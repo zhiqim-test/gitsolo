@@ -1,0 +1,72 @@
+${zhiqim_manager_breadcrumb("项目代码仓库")}
+${zhiqim_manager_content()}
+
+<#-- 功能 -->
+<#-- 导航 -->
+<div data-role="z-tabnav" class="z-tabnav-main z-mg-b20 ${zmr_color_class}">
+<nav>
+<ul>
+    <li class="z-active">项目代码仓库列表</li>
+</ul>
+<#if ZpmManageRule.check(request)>
+<div class="z-text-right z-mg-t10 z-mg-r5">
+    <button class="z-button ${zmr_color_class}" onclick="Z.Location.href('repositoryAdd.htm');"><i class="z-font z-add"></i>增加代码仓库</button>
+    <button class="z-button ${zmr_color_class}" onclick="Z.Location.check('repositoryModify.htm', 'repositoryId');"><i class="z-font z-modify"></i>修改代码仓库</button>
+    <button class="z-button z-red" onclick="Z.Location.confirm('repositoryDelete.htm', '确认要删除该代码仓库？', 'repositoryId', zCallFrame);"><i class="z-font z-delete"></i>删除代码仓库</button>
+</div>
+</#if>
+</nav>
+</div>
+
+<#-- 列表 -->
+<table class="z-table z-bordered z-pd5 z-bg-white z-lh150p z-text-center">
+<tr class="z-h40" bgcolor="${zmr_thead_bgcolor}">
+    <td width="50">选择</td>
+    <td width="15%">仓库编码</td>
+    <td width="15%">仓库名称</td>
+    <td width="*" class="z-text-left">仓库路径</td>
+    <td width="203" class="z-text-left">角色</td>
+    <td width="93">最后修改</td>
+    <td width="105">进入</td>
+</tr>
+<#for item : list>
+<tr class="z-pointer" ${zhiqim_manager_tr_onmouse()} ${zhiqim_manager_tr_click_radio()} ondblclick="Z.L.href('tree.htm?repositoryId=${item.getRepositoryId()}');">
+    <td>
+    <#if ZpmManageRule.check(request)>
+        <input name="repositoryId" type="radio" data-role="z-radio" data-class="${zmr_color_class}" value="${item.getRepositoryId()}">
+    </#if>
+    </td>
+    <td>${item.getRepositoryCode()}</td>
+    <td>${item.getRepositoryName()}</td>
+    <td class="z-text-left"><a href="tree.htm?repositoryId=${item.getRepositoryId()}">/gitsolo/${item.getProjectId()}/${item.getRepositoryCode()}.git</a></td>
+    <td class="z-text-left">
+        读权限：
+        <#if Strings.contains(item.getRepositoryUpdateRole(), "manage")>管理</#if>
+        <#if Strings.contains(item.getRepositoryUpdateRole(), "demand")>需求</#if>
+        <#if Strings.contains(item.getRepositoryUpdateRole(), "observer")>观察</#if>
+        <#if Strings.contains(item.getRepositoryUpdateRole(), "design")>设计</#if>
+        <#if Strings.contains(item.getRepositoryUpdateRole(), "development")>开发</#if>
+        <#if Strings.contains(item.getRepositoryUpdateRole(), "test")>测试</#if>
+        <#if Strings.contains(item.getRepositoryUpdateRole(), "operation")>运维</#if>
+        <br>
+        写权限：
+        <#if Strings.contains(item.getRepositoryCommitRole(), "manage")>管理</#if>
+        <#if Strings.contains(item.getRepositoryCommitRole(), "demand")>需求</#if>
+        <#if Strings.contains(item.getRepositoryCommitRole(), "observer")>观察</#if>
+        <#if Strings.contains(item.getRepositoryCommitRole(), "design")>设计</#if>
+        <#if Strings.contains(item.getRepositoryCommitRole(), "development")>开发</#if>
+        <#if Strings.contains(item.getRepositoryCommitRole(), "test")>测试</#if>
+        <#if Strings.contains(item.getRepositoryCommitRole(), "operation")>运维</#if>
+    </td>
+    <td>${item.getRepositoryModified()}</td>
+    <td>
+        <button class="z-button z-font z-share zi-px16" onclick="Z.copy('${context.getAttributeString("gitPreUrl")}/gitsolo/${item.getProjectId()}/${item.getRepositoryCode()}.git');Z.tips('复制成功');"></button>
+        <button class="z-button z-font z-next zi-px16 ${zmr_color_class}" onclick="Z.L.href('tree.htm?repositoryId=${item.getRepositoryId()}');"></button>
+    </td>
+</tr>
+</#for>
+<#if list.size() == 0>
+${zhiqim_manager_no_record(7, "暂时没有代码仓库")}
+</#if>
+</table>
+${zhiqim_manager_content_end()}

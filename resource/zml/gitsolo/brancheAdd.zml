@@ -1,0 +1,21 @@
+<#def designatedPath="/gitsolo/repository.htm"/>
+${Scripts.onload("document.theForm.brancheName.focus();")}
+${zhiqim_manager_history("branche.htm?repositoryId="+repositoryId)}
+${request.getValidateScript()}
+
+${zhiqim_manager_breadcrumb_parent_last("repository.htm", "项目代码仓库", "branche.htm?repositoryId="+repositoryId, "分支管理", "新增仓库分支")}
+${zhiqim_manager_content()}
+<form name="theForm" action="brancheInsert.htm" method="post" onsubmit="return validateForm(this);" data-role="z-call-frame">
+<input type="hidden" name="repositoryId" value="${repositoryId}">
+<table class="z-table z-bordered z-pd10 z-bg-white z-lh150p">
+<tr class="z-h40 z-bg-gray z-bold">
+    <td colspan="2">新增仓库分支</td>
+</tr>
+<tr>
+    <td width="40%">仓库分支名称：<br><span class="z-color-999">(字母数字和下划线组成，字母开头，不能为空且最长不超过20个字符)</span></td>
+    <td width="*"><input name="brancheName" class="z-input z-w300 ${zmr_color_class}" maxlength="20" spellcheck="false"><span class="z-color-red">&nbsp;*</span></td>
+</tr>
+</table>
+${zhiqim_manager_submit()}
+</form>
+${zhiqim_manager_content_end()}

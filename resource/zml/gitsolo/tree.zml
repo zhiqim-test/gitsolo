@@ -1,0 +1,59 @@
+<#def designatedPath="/gitsolo/repository.htm"/>
+${zhiqim_manager_breadcrumb_parent("/gitsolo/repository.htm", "项目代码仓库", "文件列表")}
+${zhiqim_manager_content()}
+
+<#-- 导航 -->
+<div data-role="z-tabnav" class="z-tabnav-main z-mg-b20 ${zmr_color_class}">
+<nav>
+<ul>
+    <li class="z-active">文件列表</li>
+    <li onclick="Z.Location.href('log.htm?repositoryId=${repositoryId}&head=${head}');">提交日志</li>
+    <li onclick="Z.Location.href('branche.htm?repositoryId=${repositoryId}');">分支管理</li>
+    <li onclick="Z.Location.href('tag.htm?repositoryId=${repositoryId}');">标签管理</li>
+</ul>
+<div class="z-float-left z-mg10">
+    <select data-role="z-select" class="z-select z-w150 z-h50">
+    <#for head : headList>
+    <#if head == "分枝" || head == "标签">
+        <option value="${head}">${head}</option>
+    <#else>
+        <option value="${head}" onclick="Z.Location.href('?repositoryId=${repositoryId}&head=${head}');">${head}</option>
+    </#if>
+    </#for>
+    </select>
+</div>
+</nav>
+</div>
+
+<#-- 列表 -->
+<table class="z-table z-bordered z-h40-tr z-pd5 z-bg-white z-text-center">
+<tr class="z-bg-gray">
+    <td width="30%">文件/目录</td>
+    <td width="10%">作者</td>
+    <td width="*">说明</td>
+    <td width="180">提交时间</td>
+</tr>   
+<#if Validates.isNotEmpty(folder)>
+<tr>
+    <td colspan="4" class="z-text-left"><i class="z-font z-return z-mg-r5"></i><a href="?repositoryId=${repositoryId}&head=${head}&folder=${lastFolder}">返回上一级</a></td>
+</tr>   
+</#if>
+<#for item : tree.getFolderList()>
+<tr bgcolor="${zmr_tr_odd_bgcolor}">
+    <td class="z-text-left"><i class="z-font z-folder z-px18 z-mg-r5"></i><a href="?repositoryId=${repositoryId}&head=${head}&folder=${item.getPath()}">${item.getName()}</a></td>
+    <td>${item.getCommit().getCommitterIdent().getName()}</td>
+    <td class="z-text-left">${item.getCommit().getShortMessage()}</td>
+    <td>${DateTimes.compareDateTime(item.getCommit().getCommitTimeString())}</td>
+</tr>
+</#for>
+<#for item : tree.getFileList()>
+<tr bgcolor="${zmr_tr_even_bgcolor}">
+    <td align="left"><i class="z-font z-text z-px18 z-mg-r5"></i>${item.getName()}</td>
+    <td>${item.getCommit().getCommitterIdent().getName()}</td>
+    <td class="z-text-left">${item.getCommit().getShortMessage()}</td>
+    <td>${DateTimes.compareDateTime(item.getCommit().getCommitTimeString())}</td>
+</tr>
+</#for>
+${zhiqim_manager_tr_no_record(tree, 4, "暂时没有文件数据")}
+</table>
+${zhiqim_manager_content_end()}

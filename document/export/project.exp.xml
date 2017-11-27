@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Fadfox">
+	<section name="ExportProject">
+		<item value="" key="excludeDirs"/>
+		<item value="fadfox_git,fadfox_git_test" key="excludePackages"/>
+		<item value="repository,logs,document" key="excludeResourceDirs"/>
+		<item value="false" key="isDivided"/>
+		<item value="false" key="isExportAndZipProject"/>
+		<item value="true" key="isGenExe"/>
+		<item value="false" key="isGenZip"/>
+		<item value="false" key="isIncludeJavaFile"/>
+		<item value="fadfox_gitsolo" key="jarName"/>
+		<item value="D:/_gitsolo/FadfoxPM/development/FadfoxGitsolo/document/metainfo" key="metaInfoPath"/>
+		<item value="" key="projectConfPath"/>
+		<item value="FadfoxGitsoloV1.3.2R2017080501" key="projectSourceName"/>
+		<item value="FadfoxGitsolo" key="releaseName"/>
+		<item value="D:/_gitsolo/FadfoxPM/release/V1.3.2R2017080501_dir" key="releasePath"/>
+	</section>
+</section>

@@ -1,0 +1,45 @@
+<#def designatedPath="/gitsolo/repository.htm"/>
+${zhiqim_manager_breadcrumb_parent("repository.htm", "项目代码仓库", "标签管理")}
+${zhiqim_manager_content()}
+
+<#-- 导航 -->
+<div data-role="z-tabnav" class="z-tabnav-main z-mg-b20 ${zmr_color_class}">
+<nav>
+<ul>
+    <li onclick="Z.Location.href('tree.htm?repositoryId=${repositoryId}&head=${head}');">文件列表</li>
+    <li onclick="Z.Location.href('log.htm?repositoryId=${repositoryId}&head=${head}');">提交日志</li>
+    <li onclick="Z.Location.href('branche.htm?repositoryId=${repositoryId}');">分支管理</li>
+    <li class="z-active">标签管理</li>
+</ul>
+<#if ZpmManageRule.check(request)>
+<div class="z-text-right z-mg-t10 z-mg-r5">
+    <button class="z-button ${zmr_color_class}" onclick="Z.L.href('tagAdd.htm?repositoryId=${repositoryId}');"><i class="z-font z-add"></i>增加标签</button>
+</div>
+</#if>
+</nav>
+</div>
+
+<#-- 列表 -->
+<table class="z-table z-bordered z-h50-tr z-pd10 z-bg-white z-text-center">
+<tr class="zi-h40 z-bg-gray">
+    <td width="15%">标签名称</td>
+    <td width="*">最后提交信息</td>
+    <td width="110">操作</td>
+</tr>   
+${zhiqim_manager_tr_no_record(list, 3, "暂时没有数据")}
+<#for item : list>
+<tr ${zhiqim_manager_tr_onmouse()}>
+    <td>${item.getName()}</td>
+    <td class="z-text-left">${item.getCommitAuthor()}，提交于${item.getCommitTime()}</td>
+    <td>
+    <#if ZpmManageRule.check(request)>
+        <button class="z-button z-xsmall z-h25 z-font z-modify z-mg-r5 ${zmr_color_class}" title="编辑标签" onclick="Z.L.href('tagModify.htm?repositoryId=${repositoryId}&tagName=${item.getName()}');"></button>
+        <button class="z-button z-xsmall z-h25 z-font z-delete z-red" title="删除标签" onclick="Z.L.confirm('tagDelete.htm?repositoryId=${repositoryId}&tagName=${item.getName()}', '确定删除该标签？', null, zCallFrame);"></button> 
+    <#else>
+        --
+    </#if>
+    </td>
+</tr>
+</#for>
+</table>
+${zhiqim_manager_content_end()}

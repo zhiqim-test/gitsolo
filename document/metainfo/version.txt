@@ -1,0 +1,9 @@
+V1.3.2.R2017080501
+    1)初始版本，依赖fadfoxDK,fadfoxManager,fadfoxProject的版本为V1.3.2R2017080501
+    2)支持后台仓库管理功能，默认可选7种仓库
+    3)支持后台文件列表、提交日志、分支和标签管理
+    4)支持前端依赖管理台和项目组件的操作员和成员权限管理
+    5)支持前端使用HTTP/HTTPS协议clone,commit等git操作员
+V1.4.0.R2018010101
+    1)修改为ZhiqimGit，依赖zhiqim.jar
+    2)增加项目动态

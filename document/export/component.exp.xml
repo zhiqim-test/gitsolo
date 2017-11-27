@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Fadfox">
+	<section name="ExportComponent">
+		<item value="resource-org.zhiqim.gitsolo.resource" key="dirToJars"/>
+		<item value="" key="excludeDirs"/>
+		<item value="" key="excludePackages"/>
+		<item value="" key="excludeResourceDirs"/>
+		<item value="true" key="isExportAndZipProject"/>
+		<item value="true" key="isIncludeJavaFile"/>
+		<item value="zhiqim_gitsolo" key="jarName"/>
+		<item value="D:/_gitsolo/ZhiqimPM/ZhiqimGitsolo/document/metainfo" key="metaInfoPath"/>
+		<item value="ZhiqimGitsoloV1.4.0.R2017110601" key="projectSourceName"/>
+		<item value="D:/_gitsolo/ZhiqimPM/release/V1.4.0.R2017110601" key="releasePath"/>
+	</section>
+</section>

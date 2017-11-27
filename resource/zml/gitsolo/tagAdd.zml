@@ -1,0 +1,21 @@
+<#def designatedPath="/gitsolo/repository.htm"/>
+${Scripts.onload("document.theForm.tagName.focus();")}
+${zhiqim_manager_history("tag.htm?repositoryId="+repositoryId)}
+${request.getValidateScript()}
+
+${zhiqim_manager_breadcrumb_parent_last("repository.htm", "项目代码仓库", "tag.htm?repositoryId="+repositoryId, "标签管理", "新增仓库标签")}
+${zhiqim_manager_content()}
+<form name="theForm" action="tagInsert.htm" method="post" onSubmit="return validateForm(this);" data-role="z-call-frame">
+<input type="hidden" name="repositoryId" value="#{repositoryId}">
+<table class="z-table z-bordered z-pd10 z-bg-white z-lh150p">
+<tr class="z-h40 z-bg-gray z-bold">
+    <td colspan="2">新增仓库标签</td>
+</tr>
+<tr>
+    <td width="40%">仓库标签名称：<br><span class="z-color-999">(字母数字和点号组成，不能为空且最长不超过20个字符)</span></td>
+    <td width="*"><input name="tagName" class="z-input z-w300 ${zmr_color_class}" size="30" maxlength="20"><span class="z-color-red">&nbsp;*</span></td>
+</tr>
+</table>
+${zhiqim_manager_submit()}
+</form>
+${zhiqim_manager_content_end()}

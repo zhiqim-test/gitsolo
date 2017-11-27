@@ -1,0 +1,51 @@
+<#def designatedPath="/gitsolo/repository.htm"/>
+${zhiqim_manager_breadcrumb_parent("repository.htm", "项目代码仓库", "提交日志")}
+${zhiqim_manager_content()}
+
+<#-- 导航 -->
+<div data-role="z-tabnav" class="z-tabnav-main z-mg-b20 ${zmr_color_class}">
+<nav>
+<ul>
+    <li onclick="Z.Location.href('tree.htm?repositoryId=${repositoryId}&head=${head}');">文件列表</li>
+    <li class="z-active">提交日志</li>
+    <li onclick="Z.Location.href('branche.htm?repositoryId=${repositoryId}');">分支管理</li>
+    <li onclick="Z.Location.href('tag.htm?repositoryId=${repositoryId}');">标签管理</li>
+</ul>
+<div class="z-float-left z-mg10">
+    <select data-role="z-select" class="z-select z-w150 z-h50">
+    <#for head : headList>
+    <#if Validates.isEqual(head, "分枝") || Validates.isEqual(head, "标签")>
+        <option value="${head}">${head}</option>
+    <#else>
+        <option value="${head}" onclick="Z.Location.href('?repositoryId=${repositoryId}&head=${head}');">${head}</option>
+    </#if>
+    </#for>
+    </select>
+</div>
+</nav>
+</div>
+
+<#-- 列表 -->
+<table class="z-table z-bordered z-h50-tr z-pd5 z-bg-white z-text-center">
+<tr class="zi-h40 z-bg-gray">
+    <td width="180">时间</td>
+    <td width="10%">提交者</td>
+    <td width="15%">对象前缀</td>
+    <td width="*">简单描述</td>
+</tr>   
+${zhiqim_manager_tr_no_record(result, 5, "暂时没有数据")}
+<#for item : result.list()>
+<tr ${zhiqim_manager_tr_onmouse()}>
+    <td>${DateTimes.compareDateTime(item.getCommitTimeString())}</td>
+    <td>${item.getAuthorIdent().getName()}</td>
+    <td class="z-samp">${item.getShortName()}</td>
+    <td class="z-text-left">${item.getShortMessage()}</td>
+</tr>
+</#for>
+</table>
+<table class="z-table z-bordered zi-bd-t-none z-bg-white">
+<tr class="z-h50">  
+    <td><div class="z-float-right z-mg-r10">${PagingUD.toHtmlLink(result, "log.htm")}</div></td>
+</tr>
+</table>
+${zhiqim_manager_content_end()}

@@ -1,0 +1,189 @@
+<#def designatedPath="/gitsolo/repository.htm"/>
+${Scripts.onload("document.theForm.repositoryCode.focus();")}
+${zhiqim_manager_history("repository.htm")}
+${request.getValidateScript()}
+<script>
+function doSelectRepo(repositoryCode)
+{
+    if (repositoryCode == "document")
+    {
+        theForm.repositoryName.value = "文档库";
+        theForm.repositoryUpdateRole.value = "manage,demand,observer,design,development,test,operation";
+        theForm.repositoryCommitRole.value = "manage,demand,design,development,test,operation";
+        theForm.repositorySeq.value = "100";
+    }
+    else if (repositoryCode == "design")
+    {
+        theForm.repositoryName.value = "设计库";
+        theForm.repositoryUpdateRole.value = "manage,observer,design,development";
+        theForm.repositoryCommitRole.value = "design";
+        theForm.repositorySeq.value = "200";
+    }
+    else if (repositoryCode == "development")
+    {
+        theForm.repositoryName.value = "开发库";
+        theForm.repositoryUpdateRole.value = "manage,observer,development";
+        theForm.repositoryCommitRole.value = "development";
+        theForm.repositorySeq.value = "300";
+    }
+    else if (repositoryCode == "test")
+    {
+        theForm.repositoryName.value = "测试库";
+        theForm.repositoryUpdateRole.value = "manage,observer,development,test";
+        theForm.repositoryCommitRole.value = "development,test";
+        theForm.repositorySeq.value = "400";
+    }
+    else if (repositoryCode == "release")
+    {
+        theForm.repositoryName.value = "发布库";
+        theForm.repositoryUpdateRole.value = "manage,observer,development,test,operation";
+        theForm.repositoryCommitRole.value = "test,operation";
+        theForm.repositorySeq.value = "500";
+    }
+    else if (repositoryCode == "operation")
+    {
+        theForm.repositoryName.value = "运维库";
+        theForm.repositoryUpdateRole.value = "manage,observer,operation";
+        theForm.repositoryCommitRole.value = "operation";
+        theForm.repositorySeq.value = "600";
+    }
+    else if (repositoryCode == "manage")
+    {
+        theForm.repositoryName.value = "管理库";
+        theForm.repositoryUpdateRole.value = "manage";
+        theForm.repositoryCommitRole.value = "manage";
+        theForm.repositorySeq.value = "700";
+    }
+    else if (repositoryCode == "backup")
+    {
+        theForm.repositoryName.value = "备份库";
+        theForm.repositoryUpdateRole.value = "manage,observer,design,development,test,operation";
+        theForm.repositoryCommitRole.value = "design,development,test,operation";
+        theForm.repositorySeq.value = "800";
+    }
+    else
+    {//未选中
+        Z.alert("请选择一种有效的常用仓库");
+    }
+    
+    //处理相同数据
+    theForm.repositoryCode.value = repositoryCode;
+    var roles = "manage,demand,observer,design,development,test,operation";
+    Z.each(roles.split(","), function(role)
+    {
+        Z("#u_"+role).removeClass("z-active");
+        Z("#c_"+role).removeClass("z-active");
+    });
+    
+    Z.each(theForm.repositoryUpdateRole.value.split(","), function(role)
+    {
+        Z("#u_"+role).addClass("z-active");
+    });
+    
+    Z.each(theForm.repositoryCommitRole.value.split(","), function(role)
+    {
+        Z("#c_"+role).addClass("z-active");
+    });
+}
+
+function doSelectRole(button, role)
+{   
+    var roleAdd;
+    var roleType = Z(button).attr("id").charAt(0);
+    var roleObj = roleType=="u"?theForm.repositoryUpdateRole:theForm.repositoryCommitRole;
+    var roles = roleObj.value;
+    if (roles == "")
+    {
+        roles = role;
+        roleAdd = true;
+    }
+    else
+    {
+        var ind = roles.indexOf(role);
+        if (ind == -1)
+        {
+            roles += "," + role;
+            roleAdd = true;
+        }
+        else
+        {
+            if (ind != 0 && roles.charAt(ind-1) == ",")
+                roles = roles.replace(","+role, "");
+            else
+                roles = roles.replace(role, "");
+            roleAdd = false;
+        }
+    }
+    
+    if (roleAdd)
+        Z(button).addClass("z-active");
+    else
+        Z(button).removeClass("z-active");
+        
+    roleObj.value = roles;
+}
+</script>
+
+${zhiqim_manager_breadcrumb_parent("repository.htm", "项目代码仓库", "增加代码仓库")}
+${zhiqim_manager_content()}
+<form name="theForm" action="repositoryInsert.htm" method="post" onsubmit="return validateForm(this);" data-role="z-call-frame">
+<input name="repositoryUpdateRole" type="hidden" value="observer,development">
+<input name="repositoryCommitRole" type="hidden" value="development">
+<table class="z-table z-bordered z-pd10 z-bg-white z-lh150p">
+<tr class="z-h40 z-bg-gray">
+    <td width="40%" class="z-bold">新增代码仓库</td>
+    <td width="*">选择常用命名仓库：&nbsp;&nbsp;
+        <select data-role="z-select" class="z-select z-w160" data-class="${zmr_color_class}" data-options="item-width:79px;" onchange="doSelectRepo(this.value);">
+            <option value="document">文档库</option>
+            <option value="design">设计库</option>
+            <option value="development" selected>开发库</option>
+            <option value="test">测试库</option>
+            <option value="release">发布库</option>
+            <option value="operation">运维库</option>
+            <option value="manage">管理库</option>
+            <option value="backup">备份库</option>
+        </select>
+    </td>
+</tr>
+<tr>
+    <td>代码仓库编码：<br><span class="z-color-999">(必须为字母,数字或(.-_~)组合，[1, 32]范围)</span></td>
+    <td><input name="repositoryCode" class="z-input z-w300 ${zmr_color_class}" style="font-family:Consolas" value="development" maxlength="32" spellcheck="false">&nbsp;<span class="z-color-red">*</span></td>
+</tr>
+<tr>
+    <td>代码仓库名称：<br><span class="z-color-999">([1, 32]范围)</span></td>
+    <td><input name="repositoryName" class="z-input z-w300 ${zmr_color_class}" value="开发库" maxlength="32" spellcheck="false">&nbsp;<span class="z-color-red">*</span></td>
+</tr>
+<tr>
+    <td>代码仓库读权限：</td>
+    <td>
+        <button id="u_manage" type="button" class="z-button z-bordered z-blue-bd z-active" onclick="doSelectRole(this, 'manage');">管理</button>
+        <button id="u_demand" type="button" class="z-button z-bordered z-blue-bd" onclick="doSelectRole(this, 'demand');">需求</button>
+        <button id="u_observer" type="button" class="z-button z-bordered z-blue-bd z-active" onclick="doSelectRole(this, 'observer');">观察</button>
+        <button id="u_design" type="button" class="z-button z-bordered z-blue-bd" onclick="doSelectRole(this, 'design');">设计</button>
+        <button id="u_development" type="button" class="z-button z-bordered z-blue-bd z-active" onclick="doSelectRole(this, 'development');">开发</button>
+        <button id="u_test" type="button" class="z-button z-bordered z-blue-bd" onclick="doSelectRole(this, 'test');">测试</button>
+        <button id="u_operation" type="button" class="z-button z-bordered z-blue-bd" onclick="doSelectRole(this, 'operation');">运维</button>
+        &nbsp;<span class="z-color-red">*</span>
+    </td>
+</tr>
+<tr>
+    <td>代码仓库写权限：</td>
+    <td>
+        <button id="c_manage" type="button" class="z-button z-bordered z-blue-bd" onclick="doSelectRole(this, 'manage');">管理</button>
+        <button id="c_demand" type="button" class="z-button z-bordered z-blue-bd" onclick="doSelectRole(this, 'demand');">需求</button>
+        <button id="c_observer" type="button" class="z-button z-bordered z-blue-bd" onclick="doSelectRole(this, 'observer');">观察</button>
+        <button id="c_design" type="button" class="z-button z-bordered z-blue-bd" onclick="doSelectRole(this, 'design');">设计</button>
+        <button id="c_development" type="button" class="z-button z-bordered z-blue-bd z-active" onclick="doSelectRole(this, 'development');">开发</button>
+        <button id="c_test" type="button" class="z-button z-bordered z-blue-bd" onclick="doSelectRole(this, 'test');">测试</button>
+        <button id="c_operation" type="button" class="z-button z-bordered z-blue-bd" onclick="doSelectRole(this, 'operation');">运维</button>
+        &nbsp;<span class="z-color-red">*</span>
+    </td>
+</tr>
+<tr>
+    <td>代码仓库排序：<br><span class="z-color-999">([0-999999]，从小到大排列)</span></td>
+    <td><input name="repositorySeq" class=" z-float-left z-input z-w300 ${zmr_color_class}" data-options="type:Integer;" value="300" maxlength="6">&nbsp;<span class="z-color-red">*</span></td>
+</tr>
+</table>
+${zhiqim_manager_submit()}
+</form>
+${zhiqim_manager_content_end()}
