@@ -131,7 +131,7 @@ ${zhiqim_manager_content()}
 <input name="repositoryCommitRole" type="hidden" value="development">
 <table class="z-table z-bordered z-pd10 z-bg-white z-lh150p">
 <tr class="z-h40 z-bg-gray">
-    <td width="40%" class="z-bold">新增代码仓库</td>
+    <td width="40%" class="z-bold">增加代码仓库</td>
     <td width="*">选择常用命名仓库：&nbsp;&nbsp;
         <select data-role="z-select" class="z-select z-w160" data-class="${zmr_color_class}" data-options="item-width:79px;" onchange="doSelectRepo(this.value);">
             <option value="document">文档库</option>
