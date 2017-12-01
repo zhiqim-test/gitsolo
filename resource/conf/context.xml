@@ -8,7 +8,7 @@
 
     <!-- 属性配置 -->
     <attribute name="系统名称" key="name" value="凡狐代码仓库" />
-    <attribute name="系统版本" key="version" value="V1.3.3" />
+    <attribute name="系统版本" key="version" value="V1.4.0" />
     
     <!-- 拦截器 -->
     <interceptor name="检查后端仓库拦截器" key="chkGitsoloRepo" class="org.zhiqim.gitsolo.ChkGitsoloRepoInterceptor"/>
