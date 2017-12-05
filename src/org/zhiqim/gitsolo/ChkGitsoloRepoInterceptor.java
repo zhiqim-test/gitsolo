@@ -34,6 +34,11 @@ import org.zhiqim.orm.ZTable;
 import org.zhiqim.project.ZpmConstants;
 import org.zhiqim.kernel.util.Validates;
 
+/**
+ * 检查后端仓库拦截器
+ *
+ * @version v1.0.0 @author zouzhigang 2017-12-5 新建与整理
+ */
 @AnAlias("chkGitsoloRepo")
 public class ChkGitsoloRepoInterceptor implements Interceptor, GitConstants, ZpmConstants
 {

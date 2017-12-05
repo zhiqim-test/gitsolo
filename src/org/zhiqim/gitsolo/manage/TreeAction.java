@@ -56,7 +56,7 @@ public class TreeAction implements Action, GitConstants
         
         if (headCommit == null)
         {//无提交不需要查找文件
-            request.setAttribute("tree", new ArrayList<>(0));
+            request.setAttribute("tree", new ArrayList<>());
             return;
         }
         

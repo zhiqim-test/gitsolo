@@ -72,7 +72,7 @@ public class UploadPackAction implements Action, GitConstants
         }
         catch (Throwable e)
         {
-            response.sendError(_500_INTERNAL_SERVER_ERROR_);
+            Gitsolo.sendError(response, handler, "处理上传包异常"+e.getMessage());
             log.error(e);
         }
     }

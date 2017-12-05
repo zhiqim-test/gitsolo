@@ -7,7 +7,7 @@
     <component name="项目管理" resourcePath="/org/zhiqim/project/resource/" />
 
     <!-- 属性配置 -->
-    <attribute name="系统名称" key="name" value="凡狐代码仓库" />
+    <attribute name="系统名称" key="name" value="知启蒙代码仓库" />
     <attribute name="系统版本" key="version" value="V1.4.0" />
     
     <!-- 拦截器 -->
