@@ -168,6 +168,7 @@ public class ChkGitsoloUpdateInterceptor implements Interceptor, ZhiqimConstants
             }
           
             //把操作员信息放置到属性表中
+            request.setRequestName(operatorCode);
             request.setAttribute(GIT_ATTRIBUTE_OPERATOR, operator);
             return true;
         }
