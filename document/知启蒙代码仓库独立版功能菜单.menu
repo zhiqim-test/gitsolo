@@ -4,15 +4,15 @@
     <menu parent="ROOT" code="MENU" name="系统功能根菜单" abbr="" level="0" status="0" type="0" icon="" url="" desc=""/>
     <menu parent="MENU" code="MENU_010" name="系统配置" abbr="系统" level="1" status="0" type="1" icon="z-config" url="/config.htm" desc=""/>
     <menu parent="MENU_010" code="MENU_010_010" name="系统配置设置" abbr="系统设置" level="2" status="0" type="1" icon="z-setting" url="/config.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_100" name="系统菜单管理" abbr="" level="3" status="0" type="2" icon="" url="/menu.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_110" name="修改系统菜单" abbr="" level="3" status="0" type="2" icon="" url="/menuModify.htm,/menuUpdate.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_200" name="系统头像管理" abbr="" level="3" status="0" type="2" icon="" url="/avatar.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_210" name="增加系统头像" abbr="" level="3" status="0" type="2" icon="" url="/avatarAdd.htm,/avatarInsert.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_220" name="修改系统头像" abbr="" level="3" status="0" type="2" icon="" url="/avatarModify.htm,/avatarUpdate.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_230" name="删除系统头像" abbr="" level="3" status="0" type="2" icon="" url="/avatarDelete.htm" desc=""/>
     <menu parent="MENU_010" code="MENU_010_020" name="系统参数设置" abbr="系统设置" level="2" status="0" type="1" icon="z-modify" url="/param.htm" desc=""/>
     <menu parent="MENU_010_020" code="MENU_010_020_010" name="首页主题设置" abbr="" level="3" status="0" type="2" icon="" url="/themeIndex.htm" desc=""/>
     <menu parent="MENU_010_020" code="MENU_010_020_020" name="主页主题设置" abbr="" level="3" status="0" type="2" icon="" url="/themeMain.htm" desc=""/>
-    <menu parent="MENU_010" code="MENU_010_030" name="系统菜单管理" abbr="菜单管理" level="2" status="0" type="1" icon="z-list" url="/menu.htm" desc=""/>
-    <menu parent="MENU_010_030" code="MENU_010_030_020" name="修改系统菜单" abbr="" level="3" status="0" type="2" icon="" url="/menuModify.htm,/menuUpdate.htm" desc=""/>
-    <menu parent="MENU_010" code="MENU_010_040" name="系统头像管理" abbr="头像管理" level="2" status="0" type="1" icon="z-picture" url="/avatar.htm" desc=""/>
-    <menu parent="MENU_010_040" code="MENU_010_040_010" name="增加系统头像" abbr="" level="3" status="0" type="2" icon="" url="/avatarAdd.htm,/avatarInsert.htm" desc=""/>
-    <menu parent="MENU_010_040" code="MENU_010_040_020" name="修改系统头像" abbr="" level="3" status="0" type="2" icon="" url="/avatarModify.htm,/avatarUpdate.htm" desc=""/>
-    <menu parent="MENU_010_040" code="MENU_010_040_030" name="删除系统头像" abbr="" level="3" status="0" type="2" icon="" url="/avatarDelete.htm" desc=""/>
     <menu parent="MENU_010" code="MENU_010_050" name="组织部门管理" abbr="部门管理" level="2" status="0" type="1" icon="z-apps" url="/dept.htm" desc=""/>
     <menu parent="MENU_010_050" code="MENU_010_050_010" name="增加部门" abbr="" level="3" status="0" type="1" icon="" url="/deptAdd.htm,/deptInsert.htm" desc=""/>
     <menu parent="MENU_010_050" code="MENU_010_050_020" name="修改部门" abbr="" level="3" status="0" type="2" icon="" url="/deptModify.htm,/deptUpdate.htm" desc=""/>
@@ -35,5 +35,7 @@
     <menu parent="MENU_020_010" code="MENU_020_010_030" name="删除项目" abbr="删除项目" level="3" status="0" type="2" icon="" url="/zhiqimProject/projectDelete.htm" desc=""/>
     <menu parent="MENU_020_010" code="MENU_020_010_040" name="转让项目" abbr="转让项目" level="3" status="0" type="2" icon="" url="/zhiqimProject/projectTransferSelector.htm" desc=""/>
     <menu parent="MENU_020" code="MENU_020_030" name="项目代码仓库" abbr="代码仓库" level="2" status="0" type="1" icon="z-briefcase" url="/gitsolo/repository.htm" desc=""/>
+    <menu parent="MENU" code="MENU_030" name="我的动态" abbr="我的动态" level="1" status="0" type="1" icon="z-list" url="/zhiqimProject/personReprot.htm" desc=""/>
+    <menu parent="MENU_030" code="MENU_030_010" name="我的项目动态" abbr="我的动态" level="2" status="0" type="1" icon="z-text" url="/zhiqimProject/personReport.htm" desc=""/>
 
 </zhiqim-menu>
