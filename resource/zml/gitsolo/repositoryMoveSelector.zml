@@ -1,0 +1,35 @@
+<script>
+function doSelector()
+{
+    var projectId = Z.FM.getChecked("projectId");
+    parent.doSelectorCallback(${repositoryId}, projectId);
+    parent.Z.Dialog.close(location.hash);
+}
+</script>
+
+<#-- 列表 -->
+<div class="z-w100p z-pd10 z-overflow-auto" style="height:370px;">
+<table class="z-table z-bordered z-pd5 z-text-center">
+<tr class="z-h40 z-bg-gray">
+    <td width="50">选择</td>
+    <td width="145">项目编号</td>
+    <td width="*">项目名称</td>
+    <td width="50">状态</td>
+</tr>
+${zhiqim_manager_tr_no_record(list, 4, "没有可选择的项目")}
+<#for item : list>
+<tr class="z-h50 z-pointer" ${zhiqim_manager_tr_onmouse()} ${zhiqim_manager_tr_click_radio()}>
+    <td><input name="projectId" type="radio" data-role="z-radio" data-class="z-blue" value="${item.getProjectId()}"></td>
+    <td>${item.getProjectId()}</td>
+    <td>${item.getProjectName()}</td>
+    <td><#if item.getProjectStatus() == 0>正常<#else><span class="z-color-red">停用</span></#if></td>
+</tr>
+</#for>
+</tale>
+</div>
+
+<#-- 操作 -->
+<div class="z-absolute z-b0 z-l0 z-w100p z-h60 z-pd10 z-bg-gray z-text-center">
+    <button type="button" class="z-button z-large z-w150 ${zmr_color_class}" onclick="doSelector();">确定</button>
+    <button type="button" class="z-button z-large z-w70 z-mg-l10" onclick="parent.Z.Dialog.close(location.hash);">取消</button>
+</div>
