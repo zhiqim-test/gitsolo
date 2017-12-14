@@ -42,7 +42,7 @@ function doSelectRole(button, role)
 
 ${zhiqim_manager_breadcrumb_parent("repository.htm", "项目代码仓库", "修改代码仓库")}
 ${zhiqim_manager_content()}
-<form name="theForm" action="repositoryUpdate.htm" method="post" onsubmit="return validateForm(this);" data-role="z-call-frame">
+<form name="theForm" action="" method="post" onsubmit="return validateForm(this);" data-role="z-call-frame">
 <input name="repositoryId" type="hidden" value="${item.getRepositoryId()}">
 <input name="repositoryCode" type="hidden" value="${item.getRepositoryCode()}">
 <input name="repositoryUpdateRole" type="hidden" value="${item.getRepositoryUpdateRole()}">
