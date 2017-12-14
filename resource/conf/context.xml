@@ -27,6 +27,7 @@
     <action name="修改仓库页面" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryModify.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/repositoryModify.zml" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="modify"/>
     <action name="更新仓库处理" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryUpdate.htm" redirect="/gitsolo/repository.htm" alert="修改成功" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="update"/>
     <action name="删除仓库处理" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryDelete.htm" redirect="/gitsolo/repository.htm" alert="删除成功" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="delete"/>
+    <action name="删除仓库处理" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryMoveSelector.htm" template="/ztmpl/zhiqimManager/inner.htm" include="/zml/gitsolo/repositoryMoveSelector.zml" class="org.zhiqim.gitsolo.manage.RepositoryMoveSelectorAction"/>
     
     <action name="查询仓库提交日志" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/log.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/log.zml" class="org.zhiqim.gitsolo.manage.LogAction"/>
     <action name="查看仓库文件列表" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/tree.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/tree.zml" class="org.zhiqim.gitsolo.manage.TreeAction" />

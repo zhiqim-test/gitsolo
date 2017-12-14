@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<section name="Fadfox">
+<section name="Zhiqim">
 	<section name="ExportProject">
 		<item value="" key="excludeDirs"/>
 		<item value="fadfox_git,fadfox_git_test" key="excludePackages"/>

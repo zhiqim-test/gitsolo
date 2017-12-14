@@ -18,29 +18,27 @@ package org.zhiqim.gitsolo.manage;
 
 import java.util.List;
 
+import org.zhiqim.git.Git;
+import org.zhiqim.git.util.Gits;
 import org.zhiqim.gitsolo.Gitsolo;
 import org.zhiqim.gitsolo.dbo.ZpmRepository;
 import org.zhiqim.gitsolo.dbo.ZpmRepositoryEx;
-
-import org.zhiqim.kernel.Global;
-import org.zhiqim.git.Git;
-import org.zhiqim.git.util.Gits;
 import org.zhiqim.httpd.HttpRequest;
 import org.zhiqim.httpd.context.extend.StdSwitchAction;
-import org.zhiqim.manager.ZmrSessionUser;
+import org.zhiqim.httpd.validate.ones.IsAlphaNumericUrlLen;
+import org.zhiqim.httpd.validate.ones.IsIntegerValue;
+import org.zhiqim.httpd.validate.ones.IsLen;
+import org.zhiqim.httpd.validate.ones.IsNotEmpty;
+import org.zhiqim.kernel.Global;
+import org.zhiqim.kernel.util.DateTimes;
+import org.zhiqim.kernel.util.Ids;
+import org.zhiqim.kernel.util.Validates;
 import org.zhiqim.orm.ZTable;
 import org.zhiqim.orm.ZView;
 import org.zhiqim.orm.dbo.Selector;
 import org.zhiqim.project.ZpmConstants;
 import org.zhiqim.project.ZpmMemberDao;
 import org.zhiqim.project.ZpmProjectDao;
-import org.zhiqim.kernel.util.DateTimes;
-import org.zhiqim.kernel.util.Ids;
-import org.zhiqim.kernel.util.Validates;
-import org.zhiqim.httpd.validate.ones.IsAlphaNumericUrlLen;
-import org.zhiqim.httpd.validate.ones.IsIntegerValue;
-import org.zhiqim.httpd.validate.ones.IsLen;
-import org.zhiqim.httpd.validate.ones.IsNotEmpty;
 
 /**
  * 仓库管理，支持仓库的创建、删除和修改权限
@@ -103,8 +101,8 @@ public class RepositoryAction extends StdSwitchAction implements ZpmConstants
     @Override
     protected void insert(HttpRequest request) throws Exception
     {
-        ZmrSessionUser sessionUser = request.getSessionUser(ZmrSessionUser.class);
-        long projectId = sessionUser.getOperatorParamLong(FPM_PROJECT_ID_KEY);
+        long projectId = ZpmProjectDao.getProjectId(request);
+        String operatorCode = request.getSessionName();
         
         String repositoryCode = request.getParameter("repositoryCode");
         String repositoryName = request.getParameter("repositoryName");
@@ -128,7 +126,7 @@ public class RepositoryAction extends StdSwitchAction implements ZpmConstants
         }
         
         String repositoryPath = Gitsolo.getRepositoryPath(projectId, repositoryCode);
-        Git git = Gits.create(repositoryPath, sessionUser.getOperatorCode(), sessionUser.getOperatorCode()+"@gitsolo.com");
+        Git git = Gits.create(repositoryPath, operatorCode, operatorCode+"@gitsolo.com");
         if(git == null)
         {
             request.returnHistory("仓库创建文件存储["+repositoryPath+"]时失败，请联系管理检查");
@@ -144,13 +142,13 @@ public class RepositoryAction extends StdSwitchAction implements ZpmConstants
         repo.setRepositorySeq(repositorySeq);
         repo.setRepositoryUpdateRole(repositoryUpdateRole);
         repo.setRepositoryCommitRole(repositoryCommitRole);
-        repo.setRepositoryCreator(sessionUser.getOperatorCode());
+        repo.setRepositoryCreator(operatorCode);
         repo.setRepositoryCreated(time);
         repo.setRepositoryModified(time);
         
         Global.get(ZTable.class).insert(repo);
         
-        ZpmMemberDao.report(projectId, request.getSessionName(), "创建了仓库", repositoryName);
+        ZpmMemberDao.report(projectId, operatorCode, "创建了仓库", repositoryName);
     }
 
     @Override

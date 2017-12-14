@@ -24,11 +24,13 @@ import org.zhiqim.httpd.HttpRequest;
 import org.zhiqim.httpd.context.annotation.AnIntercept;
 import org.zhiqim.kernel.Global;
 import org.zhiqim.kernel.annotation.AnAlias;
+import org.zhiqim.kernel.util.Files;
 import org.zhiqim.kernel.util.Validates;
 import org.zhiqim.orm.ZTable;
 import org.zhiqim.orm.dbo.Selector;
 import org.zhiqim.orm.dbo.Updater;
 import org.zhiqim.project.ZpmProjectDao;
+import org.zhiqim.project.dbo.ZpmProject;
 
 /**
  * Gitsolo展示器
@@ -44,12 +46,12 @@ public class GitsoloPresenter
      * 
      * @param request           请求
      * @param repositoryId      仓库编号
-     * @param repositoryCode    新仓库编码
+     * @param newRepositoryCode 新仓库编码
      * @throws Exception        异常
      */
-    public static void rename(HttpRequest request, long repositoryId, String repositoryCode) throws Exception
+    public static void rename(HttpRequest request, long repositoryId, String newRepositoryCode) throws Exception
     {
-        if (!Validates.isFileName(repositoryCode))
+        if (!Validates.isFileName(newRepositoryCode))
         {
             request.setResponseError("新仓库编码不合法，请重选一个编码");
             return;
@@ -67,7 +69,7 @@ public class GitsoloPresenter
             return;
         }
         
-        if (repositoryCode.equals(item.getRepositoryCode()))
+        if (newRepositoryCode.equals(item.getRepositoryCode()))
         {//相同不处理
             request.setResponseError("新仓库编码未修改");
             return;
@@ -76,11 +78,11 @@ public class GitsoloPresenter
         //判断是否存在相同的
         Selector selector = new Selector();
         selector.addMust("projectId", item.getProjectId());
-        selector.addMust("repositoryCode", repositoryCode);
+        selector.addMust("repositoryCode", newRepositoryCode);
         selector.addMustNotEqual("repositoryId", repositoryId);
         if (Global.get(ZTable.class).count(ZpmRepository.class, selector) > 0)
         {
-            request.setResponseError("新仓库编码["+repositoryCode+"]在该工程下已存在，请重选一个编码");
+            request.setResponseError("新仓库编码["+newRepositoryCode+"]在该工程下已存在，请重选一个编码");
             return;
         }
         
@@ -93,19 +95,82 @@ public class GitsoloPresenter
         server.remove(gitRootPath);
         
         //2.重命名文件夹
-        String newRepositoryPath = Gitsolo.getRepositoryPath(item.getProjectId(), repositoryCode);
+        String newRepositoryPath = Gitsolo.getRepositoryPath(item.getProjectId(), newRepositoryCode);
         String newGitRootPath = server.getRootPath(newRepositoryPath);
         File file = new File(gitRootPath);
         if (!file.renameTo(new File(newGitRootPath)))
         {
-            request.setResponseError("新仓库编码["+repositoryCode+"]重命名失败，请重试");
+            request.setResponseError("新仓库编码["+newRepositoryCode+"]重命名失败，请重试");
             return;
         }
         
         //3.修改到数据库
         Updater updater = new Updater();
         updater.addMust("repositoryId", repositoryId);
-        updater.addField("repositoryCode", repositoryCode);
+        updater.addField("repositoryCode", newRepositoryCode);
+        Global.get(ZTable.class).update(ZpmRepository.class, updater);
+    }
+    
+    /**
+     * 迁移仓库到新的项目下
+     * 
+     * @param request       请求
+     * @param repositoryId  仓库编号
+     * @param destProjectId 新的项目编号
+     * @throws Exception    异常
+     */
+    public static void move(HttpRequest request, long repositoryId, long destProjectId) throws Exception
+    {
+        ZpmRepository item = Global.get(ZTable.class).item(ZpmRepository.class, repositoryId);
+        if (item == null)
+        {
+            request.setResponseError("该仓库不存在");
+            return;
+        }
+        
+        if (!ZpmProjectDao.chkProjectId(request, item.getProjectId()))
+        {//判断是否切换了默认项目
+            return;
+        }
+        
+        if (Global.get(ZTable.class).count(ZpmProject.class, destProjectId) == 0)
+        {
+            request.setResponseError("请选择一个有效的目标项目");
+            return;
+        }
+        
+        String repositoryCode = item.getRepositoryCode();
+        if (Global.get(ZTable.class).count(ZpmRepository.class, new Selector("projectId", destProjectId).addMust("repositoryCode", item.getRepositoryCode())) > 0)
+        {
+            request.setResponseError("目标项目已有["+repositoryCode+"]仓库编码，请先重命名后再迁移");
+            return;
+        }
+        
+        //检查工程文件夹是否存在
+        GitServer server = Global.getService(GitServer.class);
+        String newProjectDir = server.getRootPath("/" + destProjectId);
+        Files.mkDirectory(newProjectDir);
+        
+        String repositoryPath = Gitsolo.getRepositoryPath(item.getProjectId(), item.getRepositoryCode());
+        String gitRootPath = server.getRootPath(repositoryPath);
+        
+        //1.删除Git缓存
+        server.remove(gitRootPath);
+        
+        //2.迁移文件夹到新的工程下
+        String newRepositoryPath = Gitsolo.getRepositoryPath(destProjectId, item.getRepositoryCode());
+        String newGitRootPath = server.getRootPath(newRepositoryPath);
+        File file = new File(gitRootPath);
+        if (!file.renameTo(new File(newGitRootPath)))
+        {
+            request.setResponseError("迁移到新项目["+destProjectId+"]失败，请重试");
+            return;
+        }
+        
+        //3.修改到数据库
+        Updater updater = new Updater();
+        updater.addMust("repositoryId", repositoryId);
+        updater.addField("projectId", destProjectId);
         Global.get(ZTable.class).update(ZpmRepository.class, updater);
     }
 }

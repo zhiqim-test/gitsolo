@@ -13,9 +13,34 @@ function rename()
         ajax.addParam(repositoryId);
         ajax.addParam(value);
         ajax.setFailureAlert();
-        ajax.setSuccessAlertReload("修改成功");
+        ajax.setSuccessAlertReload("重命名成功");
         ajax.execute();
     });
+}
+
+function doSelectorDialog()
+{//弹出项目选择框
+    var repositoryId = Z.FM.getChecked("repositoryId");
+    var dialog = new Z.Dialog();
+    dialog.title = "选择迁移项目";
+    dialog.url = "repositoryMoveSelector.htm?repositoryId=" + repositoryId;
+    dialog.width = 392;
+    dialog.height = 428;
+    dialog.fixed = true;
+    dialog.scroll = true;
+    dialog.execute();
+}
+
+function doSelectorCallback(repositoryId, projectId)
+{//选择操作员回调
+    var ajax = new Z.Ajax();
+    ajax.setClassName("GitsoloPresenter");
+    ajax.setMethodName("move");
+    ajax.addParam(repositoryId);
+    ajax.addParam(projectId);
+    ajax.setFailureAlert();
+    ajax.setSuccessAlertReload("迁移成功");
+    ajax.execute();
 }
 </script>
 
@@ -30,6 +55,7 @@ function rename()
     <button class="z-button ${zmr_color_class}" onclick="Z.L.href('repositoryAdd.htm');"><i class="z-font z-add"></i>增加仓库</button>
     <button class="z-button ${zmr_color_class}" onclick="Z.L.check('repositoryModify.htm', 'repositoryId');"><i class="z-font z-modify"></i>修改仓库</button>
     <button class="z-button ${zmr_color_class}" onclick="rename();"><i class="z-font z-modify"></i>重命名仓库</button>
+    <button class="z-button ${zmr_color_class}" onclick="doSelectorDialog();"><i class="z-font z-refresh"></i>迁移仓库</button>
     <button class="z-button z-red" onclick="Z.L.confirm('repositoryDelete.htm', '确认要删除该仓库？', 'repositoryId', zCallFrame);"><i class="z-font z-delete"></i>删除仓库</button>
 </div>
 </#if>

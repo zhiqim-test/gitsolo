@@ -47,7 +47,7 @@ ${zhiqim_manager_content()}
 <input name="repositoryCode" type="hidden" value="${item.getRepositoryCode()}">
 <input name="repositoryUpdateRole" type="hidden" value="${item.getRepositoryUpdateRole()}">
 <input name="repositoryCommitRole" type="hidden" value="${item.getRepositoryCommitRole()}">
-<table class="z-table z-bordered z-pd10 z-bg-white z-lh150p">
+<table class="z-table z-bordered z-pd10 z-bg-white">
 <tr class="z-h40 z-bg-gray z-bold">
     <td colspan="2">修改代码仓库</td>
 </tr>
