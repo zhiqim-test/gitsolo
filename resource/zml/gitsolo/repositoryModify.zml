@@ -52,7 +52,7 @@ ${zhiqim_manager_content()}
     <td colspan="2">修改代码仓库</td>
 </tr>
 <tr>
-    <td width="40%">代码管理编码：</td>
+    <td width="40%">代码仓库编码：</td>
     <td width="*">${item.getRepositoryCode()}</td>
 </tr>
 <tr>

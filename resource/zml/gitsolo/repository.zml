@@ -1,7 +1,24 @@
 ${zhiqim_manager_breadcrumb("项目代码仓库")}
 ${zhiqim_manager_content()}
+<script>
+function rename()
+{
+    var repositoryId = Z.FM.getChecked("repositoryId");
+    var repositoryCode = Z("#CODE_"+repositoryId).text();
+    Z.prompt('重命名代码仓库', repositoryCode, function(value)
+    {
+        var ajax = new Z.Ajax();
+        ajax.setClassName("GitsoloPresenter");
+        ajax.setMethodName("rename");
+        ajax.addParam(repositoryId);
+        ajax.addParam(value);
+        ajax.setFailureAlert();
+        ajax.setSuccessAlertReload("修改成功");
+        ajax.execute();
+    });
+}
+</script>
 
-<#-- 功能 -->
 <#-- 导航 -->
 <div data-role="z-tabnav" class="z-tabnav-main z-mg-b20 ${zmr_color_class}">
 <nav>
@@ -10,9 +27,10 @@ ${zhiqim_manager_content()}
 </ul>
 <#if ZpmManageRule.check(request)>
 <div class="z-text-right z-mg-t10 z-mg-r5">
-    <button class="z-button ${zmr_color_class}" onclick="Z.Location.href('repositoryAdd.htm');"><i class="z-font z-add"></i>增加代码仓库</button>
-    <button class="z-button ${zmr_color_class}" onclick="Z.Location.check('repositoryModify.htm', 'repositoryId');"><i class="z-font z-modify"></i>修改代码仓库</button>
-    <button class="z-button z-red" onclick="Z.Location.confirm('repositoryDelete.htm', '确认要删除该代码仓库？', 'repositoryId', zCallFrame);"><i class="z-font z-delete"></i>删除代码仓库</button>
+    <button class="z-button ${zmr_color_class}" onclick="Z.L.href('repositoryAdd.htm');"><i class="z-font z-add"></i>增加仓库</button>
+    <button class="z-button ${zmr_color_class}" onclick="Z.L.check('repositoryModify.htm', 'repositoryId');"><i class="z-font z-modify"></i>修改仓库</button>
+    <button class="z-button ${zmr_color_class}" onclick="rename();"><i class="z-font z-modify"></i>重命名仓库</button>
+    <button class="z-button z-red" onclick="Z.L.confirm('repositoryDelete.htm', '确认要删除该仓库？', 'repositoryId', zCallFrame);"><i class="z-font z-delete"></i>删除仓库</button>
 </div>
 </#if>
 </nav>
@@ -36,7 +54,7 @@ ${zhiqim_manager_content()}
         <input name="repositoryId" type="radio" data-role="z-radio" data-class="${zmr_color_class}" value="${item.getRepositoryId()}">
     </#if>
     </td>
-    <td>${item.getRepositoryCode()}</td>
+    <td id="CODE_${item.getRepositoryId()}">${item.getRepositoryCode()}</td>
     <td>${item.getRepositoryName()}</td>
     <td class="z-text-left"><a href="tree.htm?repositoryId=${item.getRepositoryId()}">/gitsolo/${item.getProjectId()}/${item.getRepositoryCode()}.git</a></td>
     <td class="z-text-left">

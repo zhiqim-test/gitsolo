@@ -114,7 +114,7 @@ public class RepositoryAction extends StdSwitchAction implements ZpmConstants
         
         if (!Validates.isFileName(repositoryCode))
         {
-            request.returnHistory("仓库名称不合法，请重选一个名称");
+            request.returnHistory("仓库编码不合法，请重选一个编码");
             return;
         }
         
@@ -123,7 +123,7 @@ public class RepositoryAction extends StdSwitchAction implements ZpmConstants
         selector.addMust("repositoryCode", repositoryCode);
         if(Global.get(ZTable.class).count(ZpmRepository.class, selector) > 0)
         {
-            request.returnHistory("仓库编码["+repositoryCode+"]已存在，请重新创建");
+            request.returnHistory("仓库编码["+repositoryCode+"]已存在，请重选一个编码");
             return;
         }
         
