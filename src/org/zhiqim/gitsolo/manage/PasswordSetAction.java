@@ -80,8 +80,6 @@ public class PasswordSetAction extends StdSwitchAction
         Global.get(ZTable.class).update(ZpmRepository.class, updater);
         
         ZmrOperatorDao.addOrUpdateOperatorParam(item.getRepositoryCreator(), repositoryName, repositoryPassword);
-        
-        
     }
 
     @Override
