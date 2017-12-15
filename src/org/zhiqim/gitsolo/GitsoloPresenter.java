@@ -1,5 +1,6 @@
 /*
  * 版权所有 (C) 2015 知启蒙(ZHIQIM) 保留所有权利。
+
  * 
  * 指定登记&发行网站： https://www.zhiqim.com/ 欢迎加盟知启蒙，[编程有你，知启蒙一路随行]。
  *
@@ -17,7 +18,6 @@
 package org.zhiqim.gitsolo;
 
 import java.io.File;
-
 import org.zhiqim.git.GitServer;
 import org.zhiqim.gitsolo.dbo.ZpmRepository;
 import org.zhiqim.httpd.HttpRequest;
@@ -26,6 +26,7 @@ import org.zhiqim.kernel.Global;
 import org.zhiqim.kernel.annotation.AnAlias;
 import org.zhiqim.kernel.util.Files;
 import org.zhiqim.kernel.util.Validates;
+import org.zhiqim.manager.ZmrSessionUser;
 import org.zhiqim.orm.ZTable;
 import org.zhiqim.orm.dbo.Selector;
 import org.zhiqim.orm.dbo.Updater;
@@ -173,4 +174,17 @@ public class GitsoloPresenter
         updater.addField("projectId", destProjectId);
         Global.get(ZTable.class).update(ZpmRepository.class, updater);
     }
+    
+        /**
+         * 设置独立密钥
+         * 
+         * @param request       请求对象
+         * @param projectId     项目编号
+         * @throws Exception    异常
+         */
+        public static void setGitsoloSecret(HttpRequest request, String gitsoloSecret) throws Exception
+        {
+            ZmrSessionUser sessionUser = request.getSessionUser(ZmrSessionUser.class);
+            GitsoloDao.setGitsoloSecret(sessionUser, gitsoloSecret);
+        }
 }

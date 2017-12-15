@@ -38,11 +38,10 @@ public class ZpmRepository implements Serializable
     @AnTableField(column="REPOSITORY_STATUS", type="byte", notNull=true)    private int repositoryStatus;    //5.仓库状态，0：正常，1：停用
     @AnTableField(column="REPOSITORY_SEQ", type="int", notNull=true)    private int repositorySeq;    //6.仓库排序，整型，从小到大
     @AnTableField(column="REPOSITORY_UPDATE_ROLE", type="string,64", notNull=false)    private String repositoryUpdateRole;    //7.仓库角色，为空表示全支持，不为空多个角色用逗号隔开，如manage,test
-    @AnTableField(column="REPOSITORY_PASSWORD", type="string,32", notNull=false)    private String repositoryPassword;    //8.代码仓库密钥
-    @AnTableField(column="REPOSITORY_COMMIT_ROLE", type="string,64", notNull=false)    private String repositoryCommitRole;    //9.仓库角色，为空表示全支持，不为空多个角色用逗号隔开，如manage,test
-    @AnTableField(column="REPOSITORY_CREATOR", type="string,32", notNull=true)    private String repositoryCreator;    //10.仓库创建者
-    @AnTableField(column="REPOSITORY_CREATED", type="string,19,char", notNull=true)    private String repositoryCreated;    //11.仓库创建时间
-    @AnTableField(column="REPOSITORY_MODIFIED", type="string,19,char", notNull=true)    private String repositoryModified;    //12.仓库更新时间
+    @AnTableField(column="REPOSITORY_COMMIT_ROLE", type="string,64", notNull=false)    private String repositoryCommitRole;    //8.仓库角色，为空表示全支持，不为空多个角色用逗号隔开，如manage,test
+    @AnTableField(column="REPOSITORY_CREATOR", type="string,32", notNull=true)    private String repositoryCreator;    //9.仓库创建者
+    @AnTableField(column="REPOSITORY_CREATED", type="string,19,char", notNull=true)    private String repositoryCreated;    //10.仓库创建时间
+    @AnTableField(column="REPOSITORY_MODIFIED", type="string,19,char", notNull=true)    private String repositoryModified;    //11.仓库更新时间
 
     public String toString()
     {
@@ -117,16 +116,6 @@ public class ZpmRepository implements Serializable
     public void setRepositoryUpdateRole(String repositoryUpdateRole)
     {
         this.repositoryUpdateRole = repositoryUpdateRole;
-    }
-
-    public String getRepositoryPassword()
-    {
-        return repositoryPassword;
-    }
-
-    public void setRepositoryPassword(String repositoryPassword)
-    {
-        this.repositoryPassword = repositoryPassword;
     }
 
     public String getRepositoryCommitRole()

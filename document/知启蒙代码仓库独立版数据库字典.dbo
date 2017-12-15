@@ -47,7 +47,6 @@
         <field column="REPOSITORY_STATUS" type="byte" length="" notNull="true" desc="仓库状态，0：正常，1：停用"/>
         <field column="REPOSITORY_SEQ" type="int" length="" notNull="true" desc="仓库排序，整型，从小到大"/>
         <field column="REPOSITORY_UPDATE_ROLE" type="string" length="64" notNull="false" desc="仓库角色，为空表示全支持，不为空多个角色用逗号隔开，如manage,test"/>
-        <field column="REPOSITORY_PASSWORD" type="string" length="32" notNull="false" desc="代码仓库密钥"/>
         <field column="REPOSITORY_COMMIT_ROLE" type="string" length="64" notNull="false" desc="仓库角色，为空表示全支持，不为空多个角色用逗号隔开，如manage,test"/>
         <field column="REPOSITORY_CREATOR" type="string" length="32" notNull="true" desc="仓库创建者"/>
         <field column="REPOSITORY_CREATED" type="string" length="19,char" notNull="true" desc="仓库创建时间"/>

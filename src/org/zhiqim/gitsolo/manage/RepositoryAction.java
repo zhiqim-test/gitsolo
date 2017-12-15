@@ -17,7 +17,6 @@
 package org.zhiqim.gitsolo.manage;
 
 import java.util.List;
-
 import org.zhiqim.git.Git;
 import org.zhiqim.git.util.Gits;
 import org.zhiqim.gitsolo.Gitsolo;
@@ -33,7 +32,6 @@ import org.zhiqim.kernel.Global;
 import org.zhiqim.kernel.util.DateTimes;
 import org.zhiqim.kernel.util.Ids;
 import org.zhiqim.kernel.util.Validates;
-import org.zhiqim.manager.dao.ZmrOperatorDao;
 import org.zhiqim.orm.ZTable;
 import org.zhiqim.orm.ZView;
 import org.zhiqim.orm.dbo.Selector;
@@ -172,19 +170,15 @@ public class RepositoryAction extends StdSwitchAction implements ZpmConstants
         String repositoryUpdateRole = request.getParameter("repositoryUpdateRole");
         String repositoryCommitRole = request.getParameter("repositoryCommitRole");
         int repositorySeq = request.getParameterInt("repositorySeq");
-        String repositoryPassword = request.getParameter("repositoryPassword");
         
         item.setRepositoryName(repositoryName);
         item.setRepositoryUpdateRole(repositoryUpdateRole);
         item.setRepositoryCommitRole(repositoryCommitRole);
         item.setRepositorySeq(repositorySeq);
-        item.setRepositoryPassword(repositoryPassword);
         item.setRepositoryModified(DateTimes.getDateTimeString());
         Global.get(ZTable.class).update(item);
         
         ZpmMemberDao.report(ZpmProjectDao.getProjectId(request), request.getSessionName(), "修改了仓库", repositoryName);
-        
-        ZmrOperatorDao.addOrUpdateOperatorParam(item.getRepositoryCreator(), repositoryName, repositoryPassword);
     }
 
     @Override
