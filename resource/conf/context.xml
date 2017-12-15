@@ -20,10 +20,10 @@
     <action name="上传包处理" interceptor="chkGitsoloUpdate" path="/gitsolo/*/git-upload-pack" class="org.zhiqim.gitsolo.portal.UploadPackAction"/>
     <action name="接收包处理" interceptor="chkGitsoloCommit" path="/gitsolo/*/git-receive-pack" class="org.zhiqim.gitsolo.portal.ReceivePackAction"/>
     
-    <!-- 设置独立密钥 -->
+    <!-- 设置独立密钥 
     <action name="仓库列表" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repository.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/repository.zml" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="list"/>
-    <action name="增加独立密钥" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryPassword.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/repositoryPassword.zml" class="org.zhiqim.gitsolo.manage.PasswordSetAction" method="modify"/>
-    
+    <action name="增加独立密钥" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryPassword.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/repositoryInsert.zml" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="modify"/>
+    -->
     <!-- 后端 -->
     <action name="仓库列表" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repository.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/repository.zml" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="list"/>
     <action name="增加仓库页面" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryAdd.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/repositoryAdd.zml" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="add"/>

@@ -33,6 +33,7 @@ import org.zhiqim.kernel.Global;
 import org.zhiqim.kernel.util.DateTimes;
 import org.zhiqim.kernel.util.Ids;
 import org.zhiqim.kernel.util.Validates;
+import org.zhiqim.manager.dao.ZmrOperatorDao;
 import org.zhiqim.orm.ZTable;
 import org.zhiqim.orm.ZView;
 import org.zhiqim.orm.dbo.Selector;
@@ -109,6 +110,7 @@ public class RepositoryAction extends StdSwitchAction implements ZpmConstants
         int repositorySeq = request.getParameterInt("repositorySeq");
         String repositoryUpdateRole = request.getParameter("repositoryUpdateRole");
         String repositoryCommitRole = request.getParameter("repositoryCommitRole");
+        String repositoryPassword = request.getParameter("repositoryPassword");
         
         if (!Validates.isFileName(repositoryCode))
         {
@@ -145,10 +147,13 @@ public class RepositoryAction extends StdSwitchAction implements ZpmConstants
         repo.setRepositoryCreator(operatorCode);
         repo.setRepositoryCreated(time);
         repo.setRepositoryModified(time);
+        repo.setRepositoryPassword(repositoryPassword);
         
         Global.get(ZTable.class).insert(repo);
         
         ZpmMemberDao.report(projectId, operatorCode, "创建了仓库", repositoryName);
+        
+        ZmrOperatorDao.addOrUpdateOperatorParam(repo.getRepositoryCreator(), repositoryName, repositoryPassword);
     }
 
     @Override
