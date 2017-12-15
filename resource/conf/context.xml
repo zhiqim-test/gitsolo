@@ -22,6 +22,7 @@
     
     <!-- 设置独立密钥 -->
     <action name="设置独立密钥" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryPassword.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/repositoryPassword.zml" class="org.zhiqim.gitsolo.manage.RepositoryAction"/> 
+    <action name="获取独立密钥" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/gitsoloSecret.htm" template="/ztmpl/zhiqimManager/inner.htm" include="/zml/gitsolo/gitsoloSecret.zml"/>
     
     <!-- 后端 -->
     <action name="仓库列表" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repository.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/repository.zml" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="list"/>

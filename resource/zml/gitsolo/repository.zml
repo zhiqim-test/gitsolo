@@ -42,6 +42,16 @@ function doSelectorCallback(repositoryId, projectId)
     ajax.setSuccessAlertReload("迁移成功");
     ajax.execute();
 }
+
+function doQueryGitsoloSecret()
+{
+    var dialog = new Z.Dialog();
+    dialog.title = "查看独立密钥";
+    dialog.url = "gitsoloSecret.htm";
+    dialog.width = 392;
+    dialog.height = 200;
+    dialog.execute();
+}
 </script>
 
 <#-- 导航 -->
@@ -53,6 +63,7 @@ function doSelectorCallback(repositoryId, projectId)
 </ul>
 <#if ZpmManageRule.check(request)>
 <div class="z-text-right z-mg-t10 z-mg-r5">
+    <button class="z-button ${zmr_color_class}" onclick="doQueryGitsoloSecret();"><i class="z-ico z-query"></i>查看独立密钥</button>
     <button class="z-button ${zmr_color_class}" onclick="Z.L.href('repositoryAdd.htm');"><i class="z-font z-add"></i>增加仓库</button>
     <button class="z-button ${zmr_color_class}" onclick="Z.L.check('repositoryModify.htm', 'repositoryId');"><i class="z-font z-modify"></i>修改仓库</button>
     <button class="z-button ${zmr_color_class}" onclick="rename();"><i class="z-font z-modify"></i>重命名仓库</button>
