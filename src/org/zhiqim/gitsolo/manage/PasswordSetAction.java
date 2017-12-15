@@ -17,13 +17,13 @@
 package org.zhiqim.gitsolo.manage;
 
 import org.zhiqim.gitsolo.dbo.ZpmRepository;
-
 import org.zhiqim.httpd.HttpRequest;
 import org.zhiqim.httpd.context.extend.StdSwitchAction;
 import org.zhiqim.httpd.validate.ones.IsNotEmpty;
 import org.zhiqim.kernel.Global;
 import org.zhiqim.manager.dao.ZmrOperatorDao;
 import org.zhiqim.orm.ZTable;
+import org.zhiqim.orm.dbo.Updater;
 
 public class PasswordSetAction extends StdSwitchAction
 {
@@ -73,7 +73,15 @@ public class PasswordSetAction extends StdSwitchAction
         String repositoryName = request.getParameter("repositoryName");
         String repositoryPassword = request.getParameter("repositoryPassword");
         
+        Updater updater = new Updater();
+        updater.addMust("repositoryId", repositoryId);
+        updater.addField("repositoryPassword", request.getParameter("repositoryPassword"));
+        
+        Global.get(ZTable.class).update(ZpmRepository.class, updater);
+        
         ZmrOperatorDao.addOrUpdateOperatorParam(item.getRepositoryCreator(), repositoryName, repositoryPassword);
+        
+        
     }
 
     @Override
