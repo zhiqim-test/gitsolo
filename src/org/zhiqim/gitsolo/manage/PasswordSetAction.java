@@ -17,12 +17,11 @@
 package org.zhiqim.gitsolo.manage;
 
 import org.zhiqim.gitsolo.dbo.ZpmRepository;
+
 import org.zhiqim.httpd.HttpRequest;
 import org.zhiqim.httpd.context.extend.StdSwitchAction;
 import org.zhiqim.httpd.validate.ones.IsNotEmpty;
-import org.zhiqim.httpd.validate.onex.IsUserPass;
 import org.zhiqim.kernel.Global;
-import org.zhiqim.kernel.util.Validates;
 import org.zhiqim.manager.dao.ZmrOperatorDao;
 import org.zhiqim.orm.ZTable;
 
@@ -54,7 +53,6 @@ public class PasswordSetAction extends StdSwitchAction
     @Override
     protected void modify(HttpRequest request) throws Exception
     {
-        request.addValidate(new IsUserPass("repositoryPassword", "独立密钥不合法，要求32位字符"));
         long repositoryId = request.getParameterLong("repositoryId");
         ZpmRepository item = Global.get(ZTable.class).item(ZpmRepository.class, repositoryId);
         request.setAttribute("item", item);
@@ -74,12 +72,6 @@ public class PasswordSetAction extends StdSwitchAction
         ZpmRepository item = Global.get(ZTable.class).item(ZpmRepository.class, repositoryId);
         String repositoryName = request.getParameter("repositoryName");
         String repositoryPassword = request.getParameter("repositoryPassword");
-        
-        if(!Validates.isUserPass(repositoryPassword))
-        {
-            request.returnHistory("");
-            return;
-        }
         
         ZmrOperatorDao.addOrUpdateOperatorParam(item.getRepositoryCreator(), repositoryName, repositoryPassword);
     }
