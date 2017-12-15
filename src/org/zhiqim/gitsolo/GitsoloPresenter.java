@@ -25,7 +25,10 @@ import org.zhiqim.httpd.context.annotation.AnIntercept;
 import org.zhiqim.kernel.Global;
 import org.zhiqim.kernel.annotation.AnAlias;
 import org.zhiqim.kernel.util.Files;
+import org.zhiqim.kernel.util.Randoms;
 import org.zhiqim.kernel.util.Validates;
+import org.zhiqim.manager.ZmrBootstrap;
+import org.zhiqim.manager.ZmrPassworder;
 import org.zhiqim.manager.ZmrSessionUser;
 import org.zhiqim.orm.ZTable;
 import org.zhiqim.orm.dbo.Selector;
@@ -185,6 +188,12 @@ public class GitsoloPresenter
         public static void setGitsoloSecret(HttpRequest request, String gitsoloSecret) throws Exception
         {
             ZmrSessionUser sessionUser = request.getSessionUser(ZmrSessionUser.class);
+            String operatorCode = request.getParameter("operatorCode");
+            
+            ZmrPassworder passworder = ZmrBootstrap.getZmrPassworder();
+            String operatorPassSalt = Randoms.lettersDigitsSecure(64);
+            gitsoloSecret = passworder.encode(operatorCode, gitsoloSecret, operatorPassSalt);
+            
             GitsoloDao.setGitsoloSecret(sessionUser, gitsoloSecret);
         }
 }
