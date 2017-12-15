@@ -110,7 +110,6 @@ public class RepositoryAction extends StdSwitchAction implements ZpmConstants
         int repositorySeq = request.getParameterInt("repositorySeq");
         String repositoryUpdateRole = request.getParameter("repositoryUpdateRole");
         String repositoryCommitRole = request.getParameter("repositoryCommitRole");
-        String repositoryPassword = request.getParameter("repositoryPassword");
         
         if (!Validates.isFileName(repositoryCode))
         {
@@ -147,13 +146,10 @@ public class RepositoryAction extends StdSwitchAction implements ZpmConstants
         repo.setRepositoryCreator(operatorCode);
         repo.setRepositoryCreated(time);
         repo.setRepositoryModified(time);
-        repo.setRepositoryPassword(repositoryPassword);
         
         Global.get(ZTable.class).insert(repo);
         
-        ZpmMemberDao.report(projectId, operatorCode, "创建了仓库", repositoryName);
-        
-        ZmrOperatorDao.addOrUpdateOperatorParam(repo.getRepositoryCreator(), repositoryName, repositoryPassword);
+        ZpmMemberDao.report(projectId, operatorCode, "创建了仓库", repositoryName);        
     }
 
     @Override
@@ -176,15 +172,19 @@ public class RepositoryAction extends StdSwitchAction implements ZpmConstants
         String repositoryUpdateRole = request.getParameter("repositoryUpdateRole");
         String repositoryCommitRole = request.getParameter("repositoryCommitRole");
         int repositorySeq = request.getParameterInt("repositorySeq");
+        String repositoryPassword = request.getParameter("repositoryPassword");
         
         item.setRepositoryName(repositoryName);
         item.setRepositoryUpdateRole(repositoryUpdateRole);
         item.setRepositoryCommitRole(repositoryCommitRole);
         item.setRepositorySeq(repositorySeq);
+        item.setRepositoryPassword(repositoryPassword);
         item.setRepositoryModified(DateTimes.getDateTimeString());
         Global.get(ZTable.class).update(item);
         
         ZpmMemberDao.report(ZpmProjectDao.getProjectId(request), request.getSessionName(), "修改了仓库", repositoryName);
+        
+        ZmrOperatorDao.addOrUpdateOperatorParam(item.getRepositoryCreator(), repositoryName, repositoryPassword);
     }
 
     @Override
