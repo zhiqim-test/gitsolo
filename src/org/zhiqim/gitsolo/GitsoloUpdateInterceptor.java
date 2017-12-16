@@ -34,6 +34,7 @@ import org.zhiqim.kernel.util.Strings;
 import org.zhiqim.kernel.util.Validates;
 import org.zhiqim.kernel.util.codes.Base64;
 import org.zhiqim.kernel.util.consts.Lng;
+import org.zhiqim.manager.ZmrBootstrap;
 import org.zhiqim.manager.dao.ZmrOperatorDao;
 import org.zhiqim.manager.dbo.ZmrOperator;
 import org.zhiqim.orm.ZTable;
@@ -176,6 +177,7 @@ public class GitsoloUpdateInterceptor implements Interceptor, ZhiqimConstants, G
             }
             else
             {
+                secret = ZmrBootstrap.getZmrPassworder().decrypt(secret);
                 if (!secret.equals(operatorPass))
                 {//3.4 独立密码不正常
                     Gitsolo.sendUnauthorized(request.getResponse());
