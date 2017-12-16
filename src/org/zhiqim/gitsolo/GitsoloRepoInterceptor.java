@@ -40,7 +40,7 @@ import org.zhiqim.kernel.util.Validates;
  * @version v1.0.0 @author zouzhigang 2017-12-5 新建与整理
  */
 @AnAlias("chkGitsoloRepo")
-public class ChkGitsoloRepoInterceptor implements Interceptor, GitConstants, ZpmConstants
+public class GitsoloRepoInterceptor implements Interceptor, GitConstants, ZpmConstants
 {
     @Override
     public void intercept(HttpRequest request) throws Exception

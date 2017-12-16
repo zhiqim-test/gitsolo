@@ -46,7 +46,7 @@ import org.zhiqim.project.dbo.ZpmMember;
  * @version v1.0.0 @author zouzhigang 2016-10-24 新建与整理
  */
 @AnAlias("chkGitsoloUpdate")
-public class ChkGitsoloUpdateInterceptor implements Interceptor, ZhiqimConstants, GitConstants
+public class GitsoloUpdateInterceptor implements Interceptor, ZhiqimConstants, GitConstants
 {
     @Override
     public void intercept(HttpRequest request) throws Exception

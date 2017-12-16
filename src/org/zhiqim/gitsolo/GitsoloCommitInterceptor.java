@@ -28,11 +28,11 @@ import org.zhiqim.httpd.context.core.Interceptor;
  * @version v1.0.0 @author zouzhigang 2016-10-24 新建与整理
  */
 @AnAlias("chkGitsoloCommit")
-public class ChkGitsoloCommitInterceptor implements Interceptor, ZhiqimConstants, GitConstants
+public class GitsoloCommitInterceptor implements Interceptor, ZhiqimConstants, GitConstants
 {
     @Override
     public void intercept(HttpRequest request) throws Exception
     {
-        ChkGitsoloUpdateInterceptor.intercept(request, false);
+        GitsoloUpdateInterceptor.intercept(request, false);
     }
 }
