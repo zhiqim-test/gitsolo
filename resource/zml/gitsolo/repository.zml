@@ -58,12 +58,11 @@ function doQueryGitsoloSecret()
 <div data-role="z-tabnav" class="z-tabnav-main z-mg-b20 ${zmr_color_class}">
 <nav>
 <ul>
-    <li class="z-active">项目代码仓库列表</li>
-    <li onclick="Z.L.href('repositoryPassword.htm');">设置独立密钥</li>
+    <li class="z-active">项目代码仓库</li>
+    <li onclick="Z.L.href('gitsoloSecret.htm');">设置独立密钥</li>
 </ul>
 <#if ZpmManageRule.check(request)>
 <div class="z-text-right z-mg-t10 z-mg-r5">
-    <button class="z-button ${zmr_color_class}" onclick="doQueryGitsoloSecret();"><i class="z-ico z-query"></i>查看独立密钥</button>
     <button class="z-button ${zmr_color_class}" onclick="Z.L.href('repositoryAdd.htm');"><i class="z-font z-add"></i>增加仓库</button>
     <button class="z-button ${zmr_color_class}" onclick="Z.L.check('repositoryModify.htm', 'repositoryId');"><i class="z-font z-modify"></i>修改仓库</button>
     <button class="z-button ${zmr_color_class}" onclick="rename();"><i class="z-font z-modify"></i>重命名仓库</button>

@@ -18,28 +18,27 @@ package org.zhiqim.gitsolo;
 
 import java.util.List;
 
-import org.zhiqim.gitsolo.dbo.ZpmRepository;
-
-import org.zhiqim.kernel.annotation.AnAlias;
-import org.zhiqim.kernel.Global;
-import org.zhiqim.kernel.constants.ZhiqimConstants;
 import org.zhiqim.git.Git;
 import org.zhiqim.git.GitConstants;
 import org.zhiqim.git.util.Gits;
+import org.zhiqim.gitsolo.dbo.ZpmRepository;
 import org.zhiqim.httpd.HttpRequest;
 import org.zhiqim.httpd.HttpResponse;
 import org.zhiqim.httpd.context.core.Interceptor;
-import org.zhiqim.manager.ZmrBootstrap;
-import org.zhiqim.manager.ZmrPassworder;
-import org.zhiqim.manager.dbo.ZmrOperator;
-import org.zhiqim.orm.ZTable;
-import org.zhiqim.orm.dbo.Selector;
-import org.zhiqim.project.dbo.ZpmMember;
+import org.zhiqim.kernel.Global;
+import org.zhiqim.kernel.annotation.AnAlias;
+import org.zhiqim.kernel.constants.ZhiqimConstants;
+import org.zhiqim.kernel.json.Jsons;
 import org.zhiqim.kernel.util.Lists;
 import org.zhiqim.kernel.util.Strings;
 import org.zhiqim.kernel.util.Validates;
 import org.zhiqim.kernel.util.codes.Base64;
 import org.zhiqim.kernel.util.consts.Lng;
+import org.zhiqim.manager.dao.ZmrOperatorDao;
+import org.zhiqim.manager.dbo.ZmrOperator;
+import org.zhiqim.orm.ZTable;
+import org.zhiqim.orm.dbo.Selector;
+import org.zhiqim.project.dbo.ZpmMember;
 
 /**
  * 检查仓库是否存在拦截器
@@ -159,14 +158,31 @@ public class ChkGitsoloUpdateInterceptor implements Interceptor, ZhiqimConstants
                 return false;
             }
             
-            ZmrPassworder passworder = ZmrBootstrap.getZmrPassworder();
             ZmrOperator operator = Global.get(ZTable.class).item(ZmrOperator.class, operatorCode);
-            if (operator == null || operator.getOperatorStatus() != 0 || !operator.getOperatorPass().equals(passworder.encode(operatorCode, operatorPass, operator.getOperatorPassSalt())))
-            {//3.3 操作员不存在或停用或密码不正确
+            if (operator == null || operator.getOperatorStatus() != 0)
+            {//3.3 操作员不存在或停用
                 Gitsolo.sendUnauthorized(request.getResponse());
                 return false;
             }
-          
+            
+            String secret = Jsons.getString(operator.getOperatorParam(), Gitsolo.GITSOLO_SECRET_KEY);
+            if (Validates.isEmptyBlank(secret))
+            {
+                if (!ZmrOperatorDao.validatePassword(operator, operatorPass))
+                {//3.4 密码不正确
+                    Gitsolo.sendUnauthorized(request.getResponse());
+                    return false;
+                }
+            }
+            else
+            {
+                if (!secret.equals(operatorPass))
+                {//3.4 独立密码不正常
+                    Gitsolo.sendUnauthorized(request.getResponse());
+                    return false;
+                }
+            }
+            
             //把操作员信息放置到属性表中
             request.setRequestName(operatorCode);
             request.setAttribute(GIT_ATTRIBUTE_OPERATOR, operator);

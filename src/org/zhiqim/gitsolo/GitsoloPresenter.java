@@ -27,10 +27,11 @@ import org.zhiqim.httpd.validate.ones.IsNotEmpty;
 import org.zhiqim.kernel.Global;
 import org.zhiqim.kernel.annotation.AnAlias;
 import org.zhiqim.kernel.util.Files;
+import org.zhiqim.kernel.util.Randoms;
 import org.zhiqim.kernel.util.Validates;
-import org.zhiqim.manager.ZmrBootstrap;
-import org.zhiqim.manager.ZmrPassworder;
 import org.zhiqim.manager.ZmrSessionUser;
+import org.zhiqim.manager.dao.ZmrOperatorDao;
+import org.zhiqim.manager.dbo.ZmrOperator;
 import org.zhiqim.orm.ZTable;
 import org.zhiqim.orm.dbo.Selector;
 import org.zhiqim.orm.dbo.Updater;
@@ -44,8 +45,12 @@ import org.zhiqim.project.dbo.ZpmProject;
  */
 @AnAlias("GitsoloPresenter")
 @AnIntercept("chkZmrLogin")
-public class GitsoloPresenter implements GitsoloConstants
+public class GitsoloPresenter
 {
+    /****************************************************************************************************/
+    //仓库重命名&迁移相关方法
+    /****************************************************************************************************/
+    
     /**
      * 重命名仓库编码，先修改文件夹名称，成功后再修改数据库
      * 
@@ -179,84 +184,80 @@ public class GitsoloPresenter implements GitsoloConstants
         Global.get(ZTable.class).update(ZpmRepository.class, updater);
     }
     
-        /**
-         * 设置独立密钥
-         * 
-         * @param request       请求对象
-         * @param projectId     项目编号
-         * @throws Exception    异常
-         */
-        public static void setGitsoloSecret(HttpRequest request, String gitsoloSecret) throws Exception
+    /****************************************************************************************************/
+    //独立密钥相关方法
+    /****************************************************************************************************/
+    
+    /**
+     * 从用户会话中读取Gitsolo独立密钥
+     * 
+     * @param sessionUser   用户会话对象
+     */
+    public static String getGitsoloSecret(ZmrSessionUser sessionUser)
+    {
+        return sessionUser.getOperatorParam(Gitsolo.GITSOLO_SECRET_KEY);
+    }
+    
+    /**
+     * 获取Gitsolo独立密钥，要求验证操作员密码
+     * 
+     * @param request       请求
+     * @throws Exception    异常
+     */
+    public static void getGitsoloSecretValidate(HttpRequest request) throws Exception
+    {
+        request.addValidate(new IsNotEmpty("operatorPass", "密码不能为空"));
+        if (!request.chkValidate())
         {
-            ZmrSessionUser sessionUser = request.getSessionUser(ZmrSessionUser.class);
-//            String operatorCode = request.getParameter("operatorCode");
-            
-            ZmrPassworder passworder = ZmrBootstrap.getZmrPassworder();
-//            String operatorPassSalt = Randoms.lettersDigitsSecure(64);
-//            gitsoloSecret = passworder.encode(operatorCode, gitsoloSecret, operatorPassSalt);
-            gitsoloSecret = passworder.encrypt(gitsoloSecret);
-            
-            GitsoloDao.setGitsoloSecret(sessionUser, gitsoloSecret);
+            request.setResponseError(request.getAlertMsg());
+            return;
         }
         
-        /**
-         * 从用户会话中读取独立密钥
-         * 
-         * @param sessionUser   用户会话对象
-         * @return              独立密钥
-         * @throws Exception    异常
-         */
-        public static String getGitsoloSecret(ZmrSessionUser sessionUser) throws Exception
-        {
-            return sessionUser.getOperatorParam(ZMR_GITSOLO_SECRET_KEY);
+        ZmrSessionUser sessionUser = request.getSessionUser(ZmrSessionUser.class);
+        String operatorPass = request.getParameter("operatorPass");
+        if (!ZmrOperatorDao.validatePassword(sessionUser.getOperator(), operatorPass))
+        {//密码不正确
+            request.setResponseError("密码不正确");
+            return;
         }
         
-        /**
-         * 获取独立密钥，要求验证操作员密码
-         * 
-         * @param request       请求
-         * @throws Exception    异常
-         */
-        public static void getGitsoloSecretValidate(HttpRequest request) throws Exception
-        {
-            ZmrSessionUser sessionUser = request.getSessionUser(ZmrSessionUser.class);
-            request.addValidate(new IsNotEmpty("operatorPass", "密码不能为空"));
-            if (!request.chkValidate())
-            {
-                request.setResponseError(request.getAlertMsg());
-                return;
-            }
-            
-            String operatorPass = request.getParameter("operatorPass");
-            if (!validatePassword(request, operatorPass))
-            {//密码不正确
-                return;
-            }
-            
-            ZmrPassworder passworder = ZmrBootstrap.getZmrPassworder();
-            request.setResponseResult(passworder.decrypt(getGitsoloSecret(sessionUser)));
-        }
+        request.setResponseResult(getGitsoloSecret(sessionUser));
+    }
+    
+    /**
+     * 设置Gitsolo独立密码
+     * 
+     * @param request   请求
+     * @throws Exception    异常
+     */
+    public static void setGitsoloSecret(HttpRequest request) throws Exception
+    {
+        ZmrSessionUser sessionUser = request.getSessionUser(ZmrSessionUser.class);
         
-        /**
-         * 验证操作员密码
-         * 
-         * @param request       请求
-         * @param operatorPass  密码
-         * @return              =true表示成功
-         */
-        private static boolean validatePassword(HttpRequest request, String operatorPass)
-        {
-            ZmrSessionUser sessionUser = request.getSessionUser(ZmrSessionUser.class);
-            String operatorCode = sessionUser.getOperatorCode();
-            
-            ZmrPassworder passworder = ZmrBootstrap.getZmrPassworder();
-            String oldPassEncode = passworder.encode(operatorCode, operatorPass, sessionUser.getOperatorPassSalt());
-            if(!oldPassEncode.equals(sessionUser.getOperator().getOperatorPass()))
-            {
-                request.setResponseError("密码不正确");
-                return false;
-            }
-            
-            return true;
-        }
+        //1.把密码设置到数据库
+        String password = Randoms.lowerLettersDigits(32);
+        ZmrOperatorDao.addOrUpdateOperatorParam(sessionUser.getOperatorCode(), Gitsolo.GITSOLO_SECRET_KEY, password);
+        
+        //2.更新sessionUser
+        ZmrOperator operator = Global.get(ZTable.class).item(ZmrOperator.class, sessionUser.getOperatorCode());
+        sessionUser.setOperator(operator);
+    }
+    
+    /**
+     * 关闭Gitsolo独立密码
+     * 
+     * @param request   请求
+     * @throws Exception    异常
+     */
+    public static void closeGitsoloSecret(HttpRequest request) throws Exception
+    {
+        ZmrSessionUser sessionUser = request.getSessionUser(ZmrSessionUser.class);
+        
+        //1.从数据库删除独立密码
+        ZmrOperatorDao.deleteOperatorParam(sessionUser.getOperatorCode(), Gitsolo.GITSOLO_SECRET_KEY);
+        
+        //2.更新sessionUser
+        ZmrOperator operator = Global.get(ZTable.class).item(ZmrOperator.class, sessionUser.getOperatorCode());
+        sessionUser.setOperator(operator);
+    }
 }

@@ -36,7 +36,8 @@ import org.zhiqim.kernel.util.consts.Lng;
 public class Gitsolo implements GitNameConstants, HttpConstants
 {
     /** Gitsolo前缀名称 */
-    public static final String GIT_PREFIX     = "/gitsolo";
+    public static final String GITSOLO_URL_PREFIX           = "/gitsolo";
+    public static final String GITSOLO_SECRET_KEY           = "gitsoloSecret";
     
     /**
      * 发送错误信息
@@ -87,8 +88,8 @@ public class Gitsolo implements GitNameConstants, HttpConstants
     /**
      * 通过访问路径获取仓库名称，得到如/1710131047430003/fadfox.git的名称
      * 
-     * @param pathInContext    上下文中的路径/gitsolo/1710131047430003/fadfox.git/git-upload-pack
-     * @return                 仓库名称如/1710131047430003/fadfox.git
+     * @param pathInContext    上下文中的路径/gitsolo/1710131047430003/ZhiqimGit.git/git-upload-pack
+     * @return                 仓库名称如/1710131047430003/ZhiqimGit.git
      */
     public static String getRepositoryName(String pathInContext)
     {
@@ -96,7 +97,7 @@ public class Gitsolo implements GitNameConstants, HttpConstants
         if (ind == -1)
             return null;
         
-        return Strings.trimLeft(pathInContext.substring(0, ind+4), GIT_PREFIX);
+        return Strings.trimLeft(pathInContext.substring(0, ind+4), GITSOLO_URL_PREFIX);
     }
     
     /**
