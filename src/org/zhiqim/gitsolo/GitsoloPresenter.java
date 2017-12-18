@@ -195,7 +195,7 @@ public class GitsoloPresenter
      * 
      * @param sessionUser   用户会话对象
      */
-    public static String getGitsoloSecret(ZmrSessionUser sessionUser)
+    public static String getSecret(ZmrSessionUser sessionUser)
     {
         String secret = sessionUser.getOperatorParam(Gitsolo.GITSOLO_SECRET_KEY);
         if (Validates.isEmptyBlank(secret))
@@ -211,7 +211,7 @@ public class GitsoloPresenter
      * @param request       请求
      * @throws Exception    异常
      */
-    public static void getGitsoloSecretValidate(HttpRequest request) throws Exception
+    public static void getSecretValidate(HttpRequest request) throws Exception
     {
         request.addValidate(new IsNotEmpty("operatorPass", "密码不能为空"));
         if (!request.chkValidate())
@@ -228,7 +228,7 @@ public class GitsoloPresenter
             return;
         }
         
-        request.setResponseResult(getGitsoloSecret(sessionUser));
+        request.setResponseResult(getSecret(sessionUser));
     }
     
     /**
@@ -237,7 +237,7 @@ public class GitsoloPresenter
      * @param request   请求
      * @throws Exception    异常
      */
-    public static void setGitsoloSecret(HttpRequest request) throws Exception
+    public static void setSecret(HttpRequest request) throws Exception
     {
         ZmrSessionUser sessionUser = request.getSessionUser(ZmrSessionUser.class);
         
@@ -258,7 +258,7 @@ public class GitsoloPresenter
      * @param request   请求
      * @throws Exception    异常
      */
-    public static void closeGitsoloSecret(HttpRequest request) throws Exception
+    public static void closeSecret(HttpRequest request) throws Exception
     {
         ZmrSessionUser sessionUser = request.getSessionUser(ZmrSessionUser.class);
         
