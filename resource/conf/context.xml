@@ -3,7 +3,7 @@
 <zhiqim-context>
     
     <!-- 组件配置 -->
-    <component name="管理台" resourcePath="/org/zhiqim/manager/resource/" bootstrap="org.zhiqim.manager.ZmrBootstrap"/>
+    <component name="管理台" resourcePath="/org/zhiqim/manager/resource/"/>
     <component name="项目管理" resourcePath="/org/zhiqim/project/resource/" />
 
     <!-- 属性配置 -->
