@@ -42,7 +42,7 @@ ${zhiqim_manager_content()}
 <tr bgcolor="${zmr_tr_odd_bgcolor}">
     <td class="z-text-left"><i class="z-font z-folder z-px18 z-mg-r5"></i><a href="?repositoryId=${repositoryId}&head=${head}&folder=${item.getPath()}">${item.getName()}</a></td>
     <td>${item.getCommit().getCommitterIdent().getName()}</td>
-    <td class="z-text-left">${item.getCommit().getShortMessage()}</td>
+    <td class="z-text-left">#{item.getCommit().getShortMessage()}</td>
     <td>${DateTimes.compareDateTime(item.getCommit().getCommitTimeString())}</td>
 </tr>
 </#for>
