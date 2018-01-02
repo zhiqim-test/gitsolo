@@ -39,7 +39,7 @@ ${zhiqim_manager_tr_no_record(result, 5, "暂时没有数据")}
     <td>${DateTimes.compareDateTime(item.getCommitTimeString())}</td>
     <td>${item.getAuthorIdent().getName()}</td>
     <td class="z-samp">${item.getShortName()}</td>
-    <td class="z-text-left">${item.getShortMessage()}</td>
+    <td class="z-text-left">#{item.getShortMessage()}</td>
 </tr>
 </#for>
 </table>

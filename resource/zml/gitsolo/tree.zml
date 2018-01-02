@@ -50,7 +50,7 @@ ${zhiqim_manager_content()}
 <tr bgcolor="${zmr_tr_even_bgcolor}">
     <td align="left"><i class="z-font z-text z-px18 z-mg-r5"></i>${item.getName()}</td>
     <td>${item.getCommit().getCommitterIdent().getName()}</td>
-    <td class="z-text-left">${item.getCommit().getShortMessage()}</td>
+    <td class="z-text-left">#{item.getCommit().getShortMessage()}</td>
     <td>${DateTimes.compareDateTime(item.getCommit().getCommitTimeString())}</td>
 </tr>
 </#for>
