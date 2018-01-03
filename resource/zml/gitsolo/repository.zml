@@ -59,7 +59,7 @@ function doQueryGitsoloSecret()
 <nav>
 <ul>
     <li class="z-active">项目代码仓库</li>
-    <li onclick="Z.L.href('gitsoloSecret.htm');">设置独立密钥</li>
+    <li onclick="Z.L.href('secret.htm');">设置独立密钥</li>
 </ul>
 <#if ZpmManageRule.check(request)>
 <div class="z-text-right z-mg-t10 z-mg-r5">
