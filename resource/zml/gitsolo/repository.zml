@@ -42,16 +42,6 @@ function doSelectorCallback(repositoryId, projectId)
     ajax.setSuccessAlertReload("迁移成功");
     ajax.execute();
 }
-
-function doQueryGitsoloSecret()
-{
-    var dialog = new Z.Dialog();
-    dialog.title = "查看独立密钥";
-    dialog.url = "gitsoloSecret.htm";
-    dialog.width = 392;
-    dialog.height = 200;
-    dialog.execute();
-}
 </script>
 
 <#-- 导航 -->
