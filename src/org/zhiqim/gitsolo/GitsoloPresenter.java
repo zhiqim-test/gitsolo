@@ -29,8 +29,6 @@ import org.zhiqim.kernel.annotation.AnAlias;
 import org.zhiqim.kernel.util.Files;
 import org.zhiqim.kernel.util.Randoms;
 import org.zhiqim.kernel.util.Validates;
-import org.zhiqim.manager.ZmrBootstrap;
-import org.zhiqim.manager.ZmrPassworder;
 import org.zhiqim.manager.ZmrSessionUser;
 import org.zhiqim.manager.dao.ZmrOperatorDao;
 import org.zhiqim.manager.dbo.ZmrOperator;
@@ -201,8 +199,7 @@ public class GitsoloPresenter
         if (Validates.isEmptyBlank(secret))
             return null;
         
-        ZmrPassworder passworder = ZmrBootstrap.getZmrPassworder();
-        return passworder.decrypt(secret);
+        return secret;
     }
     
     /**
@@ -242,8 +239,7 @@ public class GitsoloPresenter
         ZmrSessionUser sessionUser = request.getSessionUser(ZmrSessionUser.class);
         
         //1.把密码设置到数据库
-        ZmrPassworder passworder = ZmrBootstrap.getZmrPassworder();
-        String secret = passworder.encrypt(Randoms.lowerLettersDigits(32));
+        String secret = Randoms.lowerLettersDigits(32);
         
         ZmrOperatorDao.addOrUpdateOperatorParam(sessionUser.getOperatorCode(), Gitsolo.GITSOLO_SECRET_KEY, secret);
         
