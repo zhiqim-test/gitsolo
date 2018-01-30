@@ -36,7 +36,7 @@ public class LogAction implements Action, GitConstants
         Git git = (Git)request.getAttribute(GIT_ATTRIBUTE_REPOSITORY);
         
         int pageNo = request.getParameterInt("page", 1);
-        int pageSize = request.getContextAttributeInt("fmr_page_size", 20);
+        int pageSize = request.getContextAttributeInt("zmr_page_size", 20);
         
         String head = request.getParameter("head", "master");
         RevCommit headCommit = git.resolve(head, RevCommit.class);
