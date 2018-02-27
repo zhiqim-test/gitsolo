@@ -21,32 +21,32 @@
     <action name="接收包处理" interceptor="chkGitsoloCommit" path="/gitsolo/*/git-receive-pack" class="org.zhiqim.gitsolo.portal.ReceivePackAction"/>
     
     <!-- 设置独立密钥 -->
-    <action name="设置独立密钥" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/secret.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/secret.zml"/> 
-    <action name="获取独立密钥" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/secretQuery.htm" template="/ztmpl/zhiqimManager/inner.htm" include="/zml/gitsolo/secretQuery.zml"/>
+    <action name="设置独立密钥" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/secret.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/secret.zml"/> 
+    <action name="获取独立密钥" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/secretQuery.htm" template="/ztmpl/zhiqimManager/inner.htm" include="/zview/gitsolo/secretQuery.zml"/>
     
     <!-- 后端 -->
-    <action name="仓库列表" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repository.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/repository.zml" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="list"/>
-    <action name="增加仓库页面" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryAdd.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/repositoryAdd.zml" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="add"/>
+    <action name="仓库列表" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repository.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/repository.zml" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="list"/>
+    <action name="增加仓库页面" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryAdd.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/repositoryAdd.zml" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="add"/>
     <action name="增加仓库处理" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryInsert.htm" redirect="/gitsolo/repository.htm" alert="增加成功" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="insert"/>
-    <action name="修改仓库页面" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryModify.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/repositoryModify.zml" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="modify"/>
+    <action name="修改仓库页面" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryModify.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/repositoryModify.zml" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="modify"/>
     <action name="更新仓库处理" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryUpdate.htm" redirect="/gitsolo/repository.htm" alert="修改成功" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="update"/>
     <action name="删除仓库处理" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryDelete.htm" redirect="/gitsolo/repository.htm" alert="删除成功" class="org.zhiqim.gitsolo.manage.RepositoryAction" method="delete"/>
-    <action name="删除仓库处理" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryMoveSelector.htm" template="/ztmpl/zhiqimManager/inner.htm" include="/zml/gitsolo/repositoryMoveSelector.zml" class="org.zhiqim.gitsolo.manage.RepositoryMoveSelectorAction"/>
+    <action name="删除仓库处理" interceptor="chkZmrLogin,chkZpmProject" path="/gitsolo/repositoryMoveSelector.htm" template="/ztmpl/zhiqimManager/inner.htm" include="/zview/gitsolo/repositoryMoveSelector.zml" class="org.zhiqim.gitsolo.manage.RepositoryMoveSelectorAction"/>
     
-    <action name="查询仓库提交日志" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/log.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/log.zml" class="org.zhiqim.gitsolo.manage.LogAction"/>
-    <action name="查看仓库文件列表" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/tree.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/tree.zml" class="org.zhiqim.gitsolo.manage.TreeAction" />
+    <action name="查询仓库提交日志" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/log.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/log.zml" class="org.zhiqim.gitsolo.manage.LogAction"/>
+    <action name="查看仓库文件列表" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/tree.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/tree.zml" class="org.zhiqim.gitsolo.manage.TreeAction" />
     
-    <action name="分支列表" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/branche.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/branche.zml" class="org.zhiqim.gitsolo.manage.BrancheAction" method="list"/>
-    <action name="增加分支页面" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/brancheAdd.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/brancheAdd.zml" class="org.zhiqim.gitsolo.manage.BrancheAction" method="add"/>
+    <action name="分支列表" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/branche.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/branche.zml" class="org.zhiqim.gitsolo.manage.BrancheAction" method="list"/>
+    <action name="增加分支页面" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/brancheAdd.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/brancheAdd.zml" class="org.zhiqim.gitsolo.manage.BrancheAction" method="add"/>
     <action name="增加分支处理" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/brancheInsert.htm" redirect="/gitsolo/branche.htm" alert="增加成功" class="org.zhiqim.gitsolo.manage.BrancheAction" method="insert"/>
-    <action name="修改分支页面" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/brancheModify.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/brancheModify.zml" class="org.zhiqim.gitsolo.manage.BrancheAction" method="modify"/>
+    <action name="修改分支页面" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/brancheModify.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/brancheModify.zml" class="org.zhiqim.gitsolo.manage.BrancheAction" method="modify"/>
     <action name="修改分支处理" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/brancheUpdate.htm" redirect="/gitsolo/branche.htm" alert="修改成功" class="org.zhiqim.gitsolo.manage.BrancheAction" method="update"/>
     <action name="删除分支处理" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/brancheDelete.htm" redirect="/gitsolo/branche.htm" alert="删除成功" class="org.zhiqim.gitsolo.manage.BrancheAction" method="delete"/>
     
-    <action name="标签列表" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/tag.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/tag.zml" class="org.zhiqim.gitsolo.manage.TagAction" method="list"/>
-    <action name="增加标签页面" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/tagAdd.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/tagAdd.zml" class="org.zhiqim.gitsolo.manage.TagAction" method="add"/>
+    <action name="标签列表" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/tag.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/tag.zml" class="org.zhiqim.gitsolo.manage.TagAction" method="list"/>
+    <action name="增加标签页面" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/tagAdd.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/tagAdd.zml" class="org.zhiqim.gitsolo.manage.TagAction" method="add"/>
     <action name="增加标签处理" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/tagInsert.htm" redirect="/gitsolo/tag.htm" alert="增加成功" class="org.zhiqim.gitsolo.manage.TagAction" method="insert"/>
-    <action name="修改标签页面" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/tagModify.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zml/gitsolo/tagModify.zml" class="org.zhiqim.gitsolo.manage.TagAction" method="modify"/>
+    <action name="修改标签页面" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/tagModify.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/tagModify.zml" class="org.zhiqim.gitsolo.manage.TagAction" method="modify"/>
     <action name="修改标签处理" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/tagUpdate.htm" redirect="/gitsolo/tag.htm" alert="修改成功" class="org.zhiqim.gitsolo.manage.TagAction" method="update"/>
     <action name="删除标签处理" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/tagDelete.htm" redirect="/gitsolo/tag.htm" alert="删除成功" class="org.zhiqim.gitsolo.manage.TagAction" method="delete"/>
     

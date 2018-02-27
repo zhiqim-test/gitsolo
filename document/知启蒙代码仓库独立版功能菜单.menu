@@ -2,31 +2,41 @@
 <zhiqim-menu>
 
     <menu parent="ROOT" code="MENU" name="系统功能根菜单" abbr="" level="0" status="0" type="0" icon="" url="" desc=""/>
-    <menu parent="MENU" code="MENU_010" name="系统配置" abbr="系统" level="1" status="0" type="1" icon="z-config" url="/zhiqimManager/config.htm" desc=""/>
-    <menu parent="MENU_010" code="MENU_010_010" name="系统配置设置" abbr="系统设置" level="2" status="0" type="1" icon="z-setting" url="/zhiqimManager/config.htm" desc=""/>
-    <menu parent="MENU_010_010" code="MENU_010_010_100" name="系统菜单管理" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/menu.htm" desc=""/>
-    <menu parent="MENU_010_010" code="MENU_010_010_110" name="修改系统菜单" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/menuModify.htm,/zhiqimManager/menuUpdate.htm" desc=""/>
-    <menu parent="MENU_010_010" code="MENU_010_010_200" name="系统头像管理" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/avatar.htm" desc=""/>
-    <menu parent="MENU_010_010" code="MENU_010_010_210" name="增加系统头像" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/avatarAdd.htm,/zhiqimManager/avatarInsert.htm" desc=""/>
-    <menu parent="MENU_010_010" code="MENU_010_010_220" name="修改系统头像" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/avatarModify.htm,/zhiqimManager/avatarUpdate.htm" desc=""/>
-    <menu parent="MENU_010_010" code="MENU_010_010_230" name="删除系统头像" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/avatarDelete.htm" desc=""/>
-    <menu parent="MENU_010" code="MENU_010_020" name="系统参数设置" abbr="系统设置" level="2" status="0" type="1" icon="z-modify" url="/zhiqimManager/param.htm" desc=""/>
-    <menu parent="MENU_010_020" code="MENU_010_020_010" name="首页主题设置" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/themeIndex.htm" desc=""/>
-    <menu parent="MENU_010_020" code="MENU_010_020_020" name="主页主题设置" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/themeMain.htm" desc=""/>
-    <menu parent="MENU_010" code="MENU_010_050" name="组织部门管理" abbr="部门管理" level="2" status="0" type="1" icon="z-apps" url="/zhiqimManager/dept.htm" desc=""/>
-    <menu parent="MENU_010_050" code="MENU_010_050_010" name="增加部门" abbr="" level="3" status="0" type="1" icon="" url="/zhiqimManager/deptAdd.htm,/zhiqimManager/deptInsert.htm" desc=""/>
+    <menu parent="MENU" code="MENU_010" name="系统配置" abbr="系统" level="1" status="0" type="1" icon="z-config" url="/zhiqimManager/menu.htm" desc=""/>
+    <menu parent="MENU_010" code="MENU_010_010" name="系统基础设置" abbr="" level="2" status="0" type="1" icon="z-setting" url="/zhiqimManager/menu.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_010" name="增加系统菜单" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/menuAdd.htm,/zhiqimManager/menuInsert.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_020" name="修改系统菜单" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/menuModify.htm,/zhiqimManager/menuUpdate.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_030" name="删除系统菜单" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/menuDelete.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_100" name="系统头像管理" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/avatar.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_110" name="增加系统头像" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/avatarAdd.htm,/zhiqimManager/avatarInsert.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_120" name="修改系统头像" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/avatarModify.htm,/zhiqimManager/avatarUpdate.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_130" name="删除系统头像" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/avatarDelete.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_200" name="系统配置管理" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/config.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_300" name="系统参数设置" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/param.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_310" name="首页主题设置" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/themeIndex.htm" desc=""/>
+    <menu parent="MENU_010_010" code="MENU_010_010_320" name="主页主题设置" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/themeMain.htm" desc=""/>
+    <menu parent="MENU_010" code="MENU_010_050" name="部门角色管理" abbr="" level="2" status="0" type="1" icon="z-apps" url="/zhiqimManager/dept.htm" desc=""/>
+    <menu parent="MENU_010_050" code="MENU_010_050_010" name="增加部门" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/deptAdd.htm,/zhiqimManager/deptInsert.htm" desc=""/>
     <menu parent="MENU_010_050" code="MENU_010_050_020" name="修改部门" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/deptModify.htm,/zhiqimManager/deptUpdate.htm" desc=""/>
     <menu parent="MENU_010_050" code="MENU_010_050_030" name="删除部门" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/deptDelete.htm" desc=""/>
     <menu parent="MENU_010_050" code="MENU_010_050_040" name="部门成员" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/deptOperator.htm" desc=""/>
     <menu parent="MENU_010_050" code="MENU_010_050_050" name="部门权限" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/deptRule.htm" desc=""/>
-    <menu parent="MENU_010" code="MENU_010_110" name="操作员管理" abbr="操作员" level="2" status="0" type="1" icon="z-customer" url="/zhiqimManager/operator.htm" desc=""/>
+    <menu parent="MENU_010_050" code="MENU_010_050_100" name="角色管理" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/role.htm" desc=""/>
+    <menu parent="MENU_010_050" code="MENU_010_050_110" name="增加角色" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/roleAdd.htm,/zhiqimManager/roleInsert.htm" desc=""/>
+    <menu parent="MENU_010_050" code="MENU_010_050_120" name="修改角色" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/roleModify.htm,/zhiqimManager/roleUpdate.htm" desc=""/>
+    <menu parent="MENU_010_050" code="MENU_010_050_130" name="删除角色" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/roleDelete.htm" desc=""/>
+    <menu parent="MENU_010_050" code="MENU_010_050_140" name="角色成员" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/roleOperator.htm" desc=""/>
+    <menu parent="MENU_010_050" code="MENU_010_050_150" name="角色权限" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/roleRule.htm" desc=""/>
+    <menu parent="MENU_010" code="MENU_010_110" name="操作员管理" abbr="" level="2" status="0" type="1" icon="z-customer" url="/zhiqimManager/operator.htm" desc=""/>
     <menu parent="MENU_010_110" code="MENU_010_110_010" name="增加操作员" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/operatorAdd.htm,/zhiqimManager/operatorInsert.htm" desc=""/>
     <menu parent="MENU_010_110" code="MENU_010_110_020" name="修改操作员" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/operatorModify.htm,/zhiqimManager/operatorUpdate.htm" desc=""/>
     <menu parent="MENU_010_110" code="MENU_010_110_030" name="删除操作员" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/operatorDelete.htm" desc=""/>
     <menu parent="MENU_010_110" code="MENU_010_110_040" name="查看操作员权限" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/operatorRuleView.htm" desc=""/>
     <menu parent="MENU_010_110" code="MENU_010_110_050" name="设置操作员独立权限 " abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/operatorRule.htm" desc=""/>
     <menu parent="MENU_010_110" code="MENU_010_110_060" name="设置操作员部门" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/operatorDept.htm" desc=""/>
-    <menu parent="MENU_010" code="MENU_010_130" name="操作日志查询" abbr="操作日志" level="2" status="0" type="1" icon="z-text" url="/zhiqimManager/operateLog.htm" desc=""/>
+    <menu parent="MENU_010_110" code="MENU_010_110_070" name="设置操作员角色" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/operatorRole.htm" desc=""/>
+    <menu parent="MENU_010" code="MENU_010_150" name="操作日志查询" abbr="" level="2" status="0" type="1" icon="z-text" url="/zhiqimManager/operateLog.htm" desc=""/>
+    <menu parent="MENU_010_150" code="MENU_010_150_100" name="操作员在线列表" abbr="" level="3" status="0" type="1" icon="" url="/zhiqimManager/operatorOnline.htm" desc=""/>
     <menu parent="MENU" code="MENU_020" name="项目管理" abbr="项目" level="1" status="0" type="1" icon="z-box" url="/zhiqimProject/project.htm" desc=""/>
     <menu parent="MENU_020" code="MENU_020_010" name="项目信息管理" abbr="项目信息" level="2" status="0" type="1" icon="z-text" url="/zhiqimProject/project.htm" desc=""/>
     <menu parent="MENU_020" code="MENU_020_020" name="项目成员管理" abbr="项目成员" level="2" status="0" type="1" icon="z-customer" url="/zhiqimProject/member.htm" desc=""/>
