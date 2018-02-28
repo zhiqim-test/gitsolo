@@ -31,6 +31,7 @@ import org.zhiqim.httpd.validate.ones.IsNotEmpty;
 import org.zhiqim.kernel.Global;
 import org.zhiqim.kernel.util.DateTimes;
 import org.zhiqim.kernel.util.Ids;
+import org.zhiqim.kernel.util.Strings;
 import org.zhiqim.kernel.util.Validates;
 import org.zhiqim.orm.ZTable;
 import org.zhiqim.orm.ZView;
@@ -71,6 +72,7 @@ public class RepositoryAction extends StdSwitchAction implements ZpmConstants
         List<ZpmRepositoryEx> list = Global.get(ZView.class).list(ZpmRepositoryEx.class, selector);
 
         request.setAttribute("list", list);
+        request.setAttribute("gitPreUrl", Strings.trimRight(request.getRequestURL(), request.getPathInContext()));
     }
     
     @Override

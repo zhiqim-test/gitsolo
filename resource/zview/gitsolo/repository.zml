@@ -105,7 +105,7 @@ function doSelectorCallback(repositoryId, projectId)
     </td>
     <td class="z-text-center">${item.getRepositoryModified()}</td>
     <td class="z-text-center">
-        <button class="z-button z-font z-share zi-px16" onclick="Z.copy('${context.getAttributeString("gitPreUrl")}/gitsolo/${item.getProjectId()}/${item.getRepositoryCode()}.git');Z.tips('复制成功');"></button>
+        <button class="z-button z-font z-share zi-px16" onclick="Z.copy('${gitPreUrl}/gitsolo/${item.getProjectId()}/${item.getRepositoryCode()}.git');Z.tips('复制成功');"></button>
         <button class="z-button z-font z-next zi-px16 ${zmr_color_class}" onclick="Z.L.href('tree.htm?repositoryId=${item.getRepositoryId()}');"></button>
     </td>
 </tr>
