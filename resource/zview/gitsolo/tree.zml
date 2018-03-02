@@ -3,7 +3,7 @@ ${zhiqim_manager_breadcrumb_parent("/gitsolo/repository.htm", "项目代码仓�
 ${zhiqim_manager_content()}
 
 <#-- 导航 -->
-<div data-role="z-tabnav" class="z-tabnav-main z-mg-b20 ${zmr_color_class}">
+<div class="z-tabnav-main z-mg-b20 ${zmr_color_class}">
 <nav>
 <ul>
     <li class="z-active">文件列表</li>

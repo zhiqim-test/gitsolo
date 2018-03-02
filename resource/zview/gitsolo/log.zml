@@ -3,7 +3,7 @@ ${zhiqim_manager_breadcrumb_parent("repository.htm", "项目代码仓库", "提�
 ${zhiqim_manager_content()}
 
 <#-- 导航 -->
-<div data-role="z-tabnav" class="z-tabnav-main z-mg-b20 ${zmr_color_class}">
+<div class="z-tabnav-main z-mg-b20 ${zmr_color_class}">
 <nav>
 <ul>
     <li onclick="Z.Location.href('tree.htm?repositoryId=${repositoryId}&head=${head}');">文件列表</li>
