@@ -24,6 +24,7 @@ import org.zhiqim.httpd.HttpRequest;
 import org.zhiqim.httpd.context.extend.ValidateAction;
 import org.zhiqim.httpd.validate.ones.IsLen;
 import org.zhiqim.kernel.util.Streams;
+import org.zhiqim.kernel.util.Strings;
 
 /**
  * 查看一个文件内容
@@ -37,7 +38,6 @@ public class FileAction extends ValidateAction implements GitConstants
     protected void validate(HttpRequest request)
     {
         request.addValidate(new IsLen("oid", "请选择一个对象", 40, 40));
-        
     }
 
     @Override
@@ -49,10 +49,10 @@ public class FileAction extends ValidateAction implements GitConstants
         RevBlob obj = git.resolve(oid, RevBlob.class);
         obj.parseHeaders(new GitWalker(git));
         
-        byte[] buf = obj.getContent();
-        String encoding = Streams.getStreamEncoding(buf, buf.length);
-        String content = new String(obj.getContent(), encoding);
-        request.setAttribute("content", content);
+        byte[] content = obj.getContent();
+        String encoding = Streams.getStreamEncoding(content, content.length);
+        
+        request.setAttribute("content", Strings.newString(content, encoding));
     }
 
 }
