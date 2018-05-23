@@ -35,6 +35,7 @@
     
     <action name="查询仓库提交日志" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/log.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/log.zml" class="org.zhiqim.gitsolo.manage.LogAction"/>
     <action name="查看仓库文件列表" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/tree.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/tree.zml" class="org.zhiqim.gitsolo.manage.TreeAction" />
+    <action name="查看仓库文件内容" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/file.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/file.zml" class="org.zhiqim.gitsolo.manage.FileAction" />
     
     <action name="分支列表" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/branche.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/branche.zml" class="org.zhiqim.gitsolo.manage.BrancheAction" method="list"/>
     <action name="增加分支页面" interceptor="chkZmrLogin,chkGitsoloRepo" path="/gitsolo/brancheAdd.htm" template="/ztmpl/zhiqimManager/template.htm" include="/zview/gitsolo/brancheAdd.zml" class="org.zhiqim.gitsolo.manage.BrancheAction" method="add"/>
