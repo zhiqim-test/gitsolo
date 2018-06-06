@@ -91,15 +91,15 @@ public class GitsoloUpdateInterceptor implements Interceptor, ZhiqimConstants, G
             return;
         }
         
-        if (!authorize(request, repo, isUpdate))
-        {//要求认证但认证失败
-            return;
-        }
-        
         Git git = Gits.git(repositoryName);
         if (git == null)
         {//仓库
             response.sendError(_404_NOT_FOUND_, "您访问的仓库["+repositoryName+"]不存在");
+            return;
+        }
+        
+        if (!authorize(request, repo, isUpdate, git))
+        {//要求认证但认证失败
             return;
         }
         
@@ -116,7 +116,7 @@ public class GitsoloUpdateInterceptor implements Interceptor, ZhiqimConstants, G
      * @return              =true表示用户权限认证通过
      * @throws Exception
      */
-    private static boolean authorize(HttpRequest request, ZpmRepository repo, boolean isUpdate) throws Exception
+    private static boolean authorize(HttpRequest request, ZpmRepository repo, boolean isUpdate, Git git) throws Exception
     {
         //1.读取认证字符串
         String authorization = request.getHeader(_AUTHORIZATION_);
