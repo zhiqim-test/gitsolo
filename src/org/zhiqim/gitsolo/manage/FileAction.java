@@ -37,7 +37,7 @@ public class FileAction extends ValidateAction implements GitConstants
     @Override
     protected void validate(HttpRequest request)
     {
-        request.addValidate(new IsLen("oid", "请选择一个对象", 40, 40));
+        request.addValidate(new IsLen("path", "请选择一个对象", 40, 40));
     }
 
     @Override
@@ -47,8 +47,13 @@ public class FileAction extends ValidateAction implements GitConstants
         Git git = (Git)request.getAttribute(GIT_ATTRIBUTE_REPOSITORY);
         
         RevBlob obj = git.resolve(oid, RevBlob.class);
-        obj.parseHeaders(new GitWalker(git));
+        if (obj == null)
+        {
+            request.returnHistory("请选择一个有效的对象");
+            return;
+        }
         
+        obj.parseHeaders(new GitWalker(git));
         byte[] content = obj.getContent();
         String encoding = Streams.getStreamEncoding(content, content.length);
         
