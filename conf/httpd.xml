@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE ZHIQIM-CONFIG PUBLIC "-//ZHIQIM //DTD Zhiqim-Config Configuration 1.4.0//EN" "http://zhiqim.org/xmldtds/zhiqim_config_1_4_0.dtd">
+<!DOCTYPE ZHIQIM-CONFIG PUBLIC "-//ZHIQIM //DTD Zhiqim-Config Configuration 1.4.1//EN" "http://zhiqim.org/xmldtds/zhiqim_config_1_4_1.dtd">
 <zhiqim-config>
     
    <group id="githttp" desc="WEB容器服务配置">
-        <item key="listen" value="githttp.listener" update="false" desc="监听器" />
-        <item key="host" value="" update="true" desc="虚拟主机" />
-        <item key="context" value="githttp.root" update="false" desc="HTTP上下文环境，多个用逗号隔开" />
+        <item key="listen" value="githttp.listener" type="protected" desc="监听器" />
+        <item key="host" value="" type="protected" desc="虚拟主机" />
+        <item key="context" value="githttp.root" type="protected" desc="HTTP上下文环境，多个用逗号隔开" />
     </group>
     
     <group id="githttp.listener" desc="WEB容器监听配置">
-        <item key="scheme" value="HTTP" update="false" desc="HTTP或HTTPS协议" />
-        <item key="port" value="80" update="false" desc="监听端口" />
-        <item key="address" value="" update="true" desc="支持绑定的网卡IP地址，为空表示全地址" />
-        <item key="minPoolSize" value="10" update="false" desc="线程池最小值" />
-        <item key="maxPoolSize" value="20" update="false" desc="线程池最大值" />
-        <item key="maxIdleTime" value="600" update="false" desc="线程最长空闲时长，单位秒" />
-        <item key="queueSize" value="60" update="false" desc="缓存消息队列大小，设置成maxPoolSize三倍左右" />
+        <item key="scheme" value="HTTP" type="protected" desc="HTTP或HTTPS协议" />
+        <item key="port" value="80" type="protected" desc="监听端口" />
+        <item key="address" value="" type="protected" desc="支持绑定的网卡IP地址，为空表示全地址" />
+        <item key="minPoolSize" value="10" type="protected" desc="线程池最小值" />
+        <item key="maxPoolSize" value="20" type="protected" desc="线程池最大值" />
+        <item key="maxIdleTime" value="600" type="protected" desc="线程最长空闲时长，单位秒" />
+        <item key="queueSize" value="60" type="protected" desc="缓存消息队列大小，设置成maxPoolSize三倍左右" />
     </group>
     
     <group id="githttp.root" desc="WEB容器根目录配置">
-        <item key="path" value="/" update="false" desc="虚拟目录，必填" />
-        <item key="resourceType" value="directory" update="false" desc="资源目录类型classPath|directory，必填" />
-        <item key="resourcePath" value="./resource" update="false" desc="资源目录，必填，./开头表示工程相对路径" />
-        <item key="welcomeUrl" value="/index.htm" update="false" desc="欢迎页，必填" />
+        <item key="path" value="/" type="protected" desc="虚拟目录，必填" />
+        <item key="resourceType" value="directory" type="protected" desc="资源目录类型classPath|directory，必填" />
+        <item key="resourcePath" value="./resource" type="protected" desc="资源目录，必填，./开头表示工程相对路径" />
+        <item key="welcomeUrl" value="/index.htm" type="protected" desc="欢迎页，必填" />
         
-        <item key="maxContentLength" value="524288000" update="false" desc="支持最多的内容长度，单位字节，0表示不限制" />
-        <item key="gitPreUrl" value="http://192.168.1.99" update="false" desc="Git前缀URL" />
+        <item key="maxContentLength" value="524288000" type="protected" desc="支持最多的内容长度，单位字节，0表示不限制" />
+        <item key="gitPreUrl" value="http://192.168.1.99" type="protected" desc="Git前缀URL" />
     </group>
     
 </zhiqim-config>

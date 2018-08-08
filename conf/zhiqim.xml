@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE ZHIQIM-CONFIG PUBLIC "-//ZHIQIM //DTD Zhiqim-Config Configuration 1.4.0//EN" "http://zhiqim.org/xmldtds/zhiqim_config_1_4_0.dtd">
+<!DOCTYPE ZHIQIM-CONFIG PUBLIC "-//ZHIQIM //DTD Zhiqim-Config Configuration 1.4.1//EN" "http://zhiqim.org/xmldtds/zhiqim_config_1_4_1.dtd">
 <zhiqim-config>
 
     <group id="boot" desc="系统启动配置">
-        <item key="name" value="知启蒙代码仓库独立版" update="false" desc="系统名称" />
-        <item key="version" value="V1.4" update="false" desc="系统版本" />
-        <item key="port" value="60060" update="false" desc="系统监听端口，用于启动监听和命令关闭工程" />
-        <item key="home" value="d:/Java/jdk1.7.0_80/" update="false" desc="JDK根目录" />
-        <item key="process" value="fadfox_git" update="false" desc="使用的进程名" />
-        <item key="args" value="-server -Xms64m -Xmx1024m" update="false" desc="JVM参数" />
+        <item key="name" value="知启蒙代码仓库独立版" type="protected" desc="系统名称" />
+        <item key="version" value="V1.4" type="protected" desc="系统版本" />
+        <item key="port" value="60060" type="protected" desc="系统监听端口，用于启动监听和命令关闭工程" />
+        <item key="home" value="d:/Java/jdk1.7.0_80/" type="protected" desc="JDK根目录" />
+        <item key="process" value="fadfox_git" type="protected" desc="使用的进程名" />
+        <item key="args" value="-server -Xms64m -Xmx1024m" type="protected" desc="JVM参数" />
     </group>
     
     <group id="config" desc="系统其他配置文件，./开头表示工程相对路径下，绝对路径使用/或d:\\等">
-        <item key="logging" value="./conf/logging.xml" update="false" desc="日志配置"/>
-        <item key="httpd" value="./conf/httpd.xml" update="false" desc="WEB配置"/>
+        <item key="logging" value="./conf/logging.xml" type="protected" desc="日志配置"/>
+        <item key="httpd" value="./conf/httpd.xml" type="protected" desc="WEB配置"/>
     </group>
 
     <group id="service" desc="系统服务配置项，注意顺序有影响">
-        <item key="logging" value="org.zhiqim.kernel.logging.LogServer" update="false" desc="日志服务"/>
-        <item key="logcutter" value="org.zhiqim.kernel.logging.LogLinuxNohupCutter" update="false" desc="日志Linux切割服务"/>
-        <item key="orm" value="org.zhiqim.orm.ORMServer" update="false" desc="数据库服务"/>
-        <item key="git" value="org.zhiqim.git.GitServer" update="false" desc="Git服务"/>
-        <item key="githttp" value="org.zhiqim.httpd.HttpServer" update="false" desc="GitHttp服务"/>
+        <item key="logging" value="org.zhiqim.kernel.logging.LogServer" type="protected" desc="日志服务"/>
+        <item key="logcutter" value="org.zhiqim.kernel.logging.LogLinuxNohupCutter" type="protected" desc="日志Linux切割服务"/>
+        <item key="orm" value="org.zhiqim.orm.ORMServer" type="protected" desc="数据库服务"/>
+        <item key="git" value="org.zhiqim.git.GitServer" type="protected" desc="Git服务"/>
+        <item key="githttp" value="org.zhiqim.httpd.HttpServer" type="protected" desc="GitHttp服务"/>
     </group>
 
     <group id="orm" desc="MYSQL数据库连接方式">
-        <item key="dbType" value="mysql" update="false" desc="数据库类型,支持mysql|oracle|mssql|postgresql|sqlite|hsql" />
-        <item key="driver" value="com.mysql.jdbc.Driver" update="false" desc="数据库驱动" />
-        <item key="url" value="jdbc:mysql://127.0.0.1:3306/zhiqim_gitsolo?useUnicode=true&amp;characterEncoding=UTF-8" update="false" desc="数据库Url" />
-        <item key="user" value="root" update="false" desc="数据库用户名" />
-        <item key="pass" value="root" update="false" desc="数据库密码" />
-        <item key="minPoolSize" value="2" update="false" desc="线程池最小值" />
-        <item key="maxPoolSize" value="10" update="false" desc="线程池最大值" />
-        <item key="maxKeepTime" value="7001" update="false" desc="每连接最大保持时长，大于该值将重建连接，单位秒" />
+        <item key="dbType" value="mysql" type="protected" desc="数据库类型,支持mysql|oracle|mssql|postgresql|sqlite|hsql" />
+        <item key="driver" value="com.mysql.jdbc.Driver" type="protected" desc="数据库驱动" />
+        <item key="url" value="jdbc:mysql://127.0.0.1:3306/zhiqim_gitsolo?useUnicode=true&amp;characterEncoding=UTF-8" type="protected" desc="数据库Url" />
+        <item key="user" value="root" type="protected" desc="数据库用户名" />
+        <item key="pass" value="root" type="protected" desc="数据库密码" />
+        <item key="minPoolSize" value="2" type="protected" desc="线程池最小值" />
+        <item key="maxPoolSize" value="10" type="protected" desc="线程池最大值" />
+        <item key="maxKeepTime" value="7001" type="protected" desc="每连接最大保持时长，大于该值将重建连接，单位秒" />
     </group>
     
     <!--  
@@ -44,12 +44,12 @@
         <item key="pass" value="root" update="true" desc="数据库密码" />
         <item key="minPoolSize" value="2" update="true" desc="线程池最小值" />
         <item key="maxPoolSize" value="10" update="true" desc="线程池最大值" />
-        <item key="maxKeepTime" value="7001" update="false" desc="每连接最大保持时长，大于该值将重建连接，单位秒" />
+        <item key="maxKeepTime" value="7001" type="protected" desc="每连接最大保持时长，大于该值将重建连接，单位秒" />
     </group>
     -->
     
     <group id="git" desc="参数配置">
-        <item key="gitRootDir" value="d:/_ZhiqimRepository" update="false" desc="仓库根目录配置" />
+        <item key="gitRootDir" value="d:/_ZhiqimRepository" type="protected" desc="仓库根目录配置" />
     </group>
 
 </zhiqim-config>

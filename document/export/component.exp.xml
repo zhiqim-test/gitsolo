@@ -8,8 +8,8 @@
 		<item value="true" key="isExportAndZipProject"/>
 		<item value="true" key="isIncludeJavaFile"/>
 		<item value="zhiqim_gitsolo" key="jarName"/>
-		<item value="D:/_gitsolo/ZhiqimPM/ZhiqimGitsolo/document/metainfo" key="metaInfoPath"/>
-		<item value="ZhiqimGitsoloV1.4.0.R2018010101" key="projectSourceName"/>
-		<item value="D:/_github/zhiqim-com/download/ZhiqimPM/V1.4.0.R2018010101" key="releasePath"/>
+		<item value="D:/_gitcan/ZhiqimPM/ZhiqimGitsolo/document/metainfo" key="metaInfoPath"/>
+		<item value="ZhiqimGitsoloV1.4.1" key="projectSourceName"/>
+		<item value="D:/_github/zhiqim-com/download/ZhiqimPM/V1.4.1" key="releasePath"/>
 	</section>
 </section>
