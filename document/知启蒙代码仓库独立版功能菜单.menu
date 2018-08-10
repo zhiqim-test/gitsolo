@@ -37,16 +37,14 @@
     <menu parent="MENU_010_110" code="MENU_010_110_070" name="设置操作员角色" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimManager/operatorRole.htm" desc=""/>
     <menu parent="MENU_010" code="MENU_010_150" name="操作日志查询" abbr="" level="2" status="0" type="1" icon="z-text" url="/zhiqimManager/operateLog.htm" desc=""/>
     <menu parent="MENU_010_150" code="MENU_010_150_100" name="操作员在线列表" abbr="" level="3" status="0" type="1" icon="" url="/zhiqimManager/operatorOnline.htm" desc=""/>
-    <menu parent="MENU" code="MENU_020" name="项目管理" abbr="项目" level="1" status="0" type="1" icon="z-box" url="" desc=""/>
-    <menu parent="MENU_020" code="MENU_020_010" name="项目信息管理" abbr="" level="2" status="0" type="1" icon="z-text" url="/zhiqimProject/project.htm" desc=""/>
-    <menu parent="MENU_020" code="MENU_020_020" name="项目成员管理" abbr="" level="2" status="0" type="1" icon="z-customer" url="/zhiqimProject/member.htm" desc=""/>
-    <menu parent="MENU_020_010" code="MENU_020_010_010" name="增加项目" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimProject/projectAdd.htm,/zhiqimProject/projectInsert.htm" desc=""/>
-    <menu parent="MENU_020_010" code="MENU_020_010_020" name="修改项目" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimProject/projectModify.htm,/zhiqimProject/projectUpdate.htm" desc=""/>
-    <menu parent="MENU_020_010" code="MENU_020_010_030" name="删除项目" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimProject/projectDelete.htm" desc=""/>
-    <menu parent="MENU_020_010" code="MENU_020_010_040" name="转让项目" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimProject/projectTransferSelector.htm" desc=""/>
-    <menu parent="MENU_020" code="MENU_020_030" name="项目代码仓库" abbr="" level="2" status="0" type="1" icon="z-briefcase" url="/gitsolo/repository.htm" desc=""/>
-    <menu parent="MENU" code="MENU_030" name="我的动态" abbr="动态" level="1" status="0" type="1" icon="z-list" url="" desc=""/>
-    <menu parent="MENU_030" code="MENU_030_010" name="我的汇报设置" abbr="" level="2" status="0" type="1" icon="z-text" url="/zhiqimProject/personSetting.htm" desc=""/>
-    <menu parent="MENU_030" code="MENU_030_020" name="我的项目动态" abbr="" level="2" status="0" type="1" icon="z-text" url="/zhiqimProject/personReport.htm" desc=""/>
+    <menu parent="MENU_010" code="MENU_010_210" name="项目信息管理" abbr="" level="2" status="0" type="1" icon="z-text" url="/zhiqimProject/project.htm" desc=""/>
+    <menu parent="MENU_010" code="MENU_010_220" name="项目成员管理" abbr="" level="2" status="0" type="1" icon="z-customer" url="/zhiqimProject/member.htm" desc=""/>
+    <menu parent="MENU_010_210" code="MENU_010_210_010" name="增加项目" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimProject/projectAdd.htm,/zhiqimProject/projectInsert.htm" desc=""/>
+    <menu parent="MENU_010_210" code="MENU_010_210_020" name="修改项目" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimProject/projectModify.htm,/zhiqimProject/projectUpdate.htm" desc=""/>
+    <menu parent="MENU_010_210" code="MENU_010_210_030" name="删除项目" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimProject/projectDelete.htm" desc=""/>
+    <menu parent="MENU_010_210" code="MENU_010_210_040" name="转让项目" abbr="" level="3" status="0" type="2" icon="" url="/zhiqimProject/projectTransferSelector.htm" desc=""/>
+    <menu parent="MENU_010" code="MENU_010_230" name="项目代码仓库" abbr="" level="2" status="0" type="1" icon="z-briefcase" url="/gitsolo/repository.htm" desc=""/>
+    <menu parent="MENU_010" code="MENU_010_310" name="我的汇报设置" abbr="" level="2" status="1" type="1" icon="z-text" url="/zhiqimProject/personSetting.htm" desc=""/>
+    <menu parent="MENU_010" code="MENU_010_320" name="我的项目动态" abbr="" level="2" status="0" type="1" icon="z-text" url="/zhiqimProject/personReport.htm" desc=""/>
 
 </zhiqim-menu>
